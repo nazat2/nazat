@@ -18,4 +18,5 @@ export default defineConfig({
     ],
     copyPublicDir: true,
   },
+  publicDir: "public",  // <-- INI BARIS YANG DITAMBAH
 });
