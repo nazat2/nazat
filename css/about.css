@@ -1,0 +1,70 @@
+.about-hero {
+  position: relative;
+  width: 100vw;
+  height: 100svh;
+  padding: 8em 2em 6em 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg);
+  color: var(--fg);
+  overflow: hidden;
+}
+
+.about-hero .about-hero-header {
+  text-align: center;
+}
+
+.about-hero .about-hero-header h1 {
+  font-size: 7.5rem;
+}
+
+.about-hero .about-hero-bio {
+  text-align: center;
+  width: 50%;
+}
+
+.about-hero .about-hero-portrait {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(10deg);
+  width: 15%;
+  aspect-ratio: 5/7;
+  border-radius: 1em;
+  overflow: hidden;
+  border: 0.25em solid var(--accent3);
+  outline: 0.25em solid var(--accent1);
+}
+
+.about-hero .about-hero-bio {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+@media (max-width: 1000px) {
+  .about-hero {
+    padding: 8em 2em 4em 2em;
+  }
+
+  .about-hero .about-hero-header h1 {
+    font-size: 4rem;
+  }
+
+  .about-hero .about-hero-bio {
+    width: 100%;
+  }
+
+  .about-hero .about-hero-portrait {
+    width: 25%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  .about-hero .about-hero-portrait img {
+    position: absolute;
+    height: 110%;
+  }
+}
