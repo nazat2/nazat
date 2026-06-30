@@ -1,0 +1,94 @@
+.about-hero {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  padding: 8em 2em 6em 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg);
+  color: var(--fg);
+  overflow: hidden;
+}
+
+.about-hero .about-hero-header {
+  text-align: center;
+}
+
+.about-hero .about-hero-header h1 {
+  font-size: 7.5rem;
+}
+
+.about-hero .about-hero-bio {
+  text-align: center;
+  width: 50%;
+}
+
+.about-hero .about-hero-portrait {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(10deg);
+  width: 15%;
+  aspect-ratio: 5/7;
+  border-radius: 1em;
+  overflow: hidden;
+  border: 0.25em solid var(--accent3);
+  outline: 0.25em solid var(--accent1);
+}
+
+.about-hero .about-hero-bio {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+@media (max-width: 1000px) {
+  .about-hero {
+    height: max-content;
+    min-height: 100svh;
+    padding: 7em 1.5em 4em 1.5em;
+    gap: 2em;
+  }
+
+  .about-hero .about-hero-header h1 {
+    font-size: clamp(2.25rem, 11vw, 4rem);
+  }
+
+  .about-hero .about-hero-bio {
+    width: 100%;
+    order: 3;
+  }
+
+  .about-hero .about-hero-portrait {
+    position: relative;
+    order: 2;
+    top: auto;
+    left: auto;
+    width: 45%;
+    max-width: 220px;
+    margin: 0.5em auto;
+    transform: rotate(-4deg);
+  }
+
+  .about-hero .about-hero-portrait img {
+    position: static;
+    height: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-hero {
+    padding: 6em 1.25em 3em 1.25em;
+    gap: 1.5em;
+  }
+
+  .about-hero .about-hero-portrait {
+    width: 55%;
+  }
+
+  .about-hero .about-hero-bio p.ss {
+    font-size: 1.05rem;
+  }
+}

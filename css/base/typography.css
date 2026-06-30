@@ -1,0 +1,49 @@
+h1,
+h2,
+h3 {
+  text-transform: uppercase;
+  font-family: "rader";
+  font-style: italic;
+  line-height: 0.95;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 5vw, 5rem);
+}
+
+h2 {
+  font-size: clamp(1.85rem, 4vw, 4rem);
+}
+
+h3 {
+  font-size: clamp(1.35rem, 2.5vw, 2rem);
+}
+
+p,
+p.ss {
+  font-family: "formula-narrow";
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.125;
+}
+
+p.mn {
+  text-transform: uppercase;
+  font-family: "supply-mono";
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.125;
+}
+
+@media (max-width: 1000px) {
+  h1 {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+  }
+}
+
+@media (max-width: 480px) {
+  p,
+  p.ss {
+    font-size: 1.05rem;
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "nazat-portfolio",
+  "version": "1.0.0",
+  "description": "M Nazat Portfolio - Embedded, AI, and Game Development",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "host": "vite --host"
+  },
+  "keywords": [
+    "portfolio",
+    "embedded",
+    "ai",
+    "game",
+    "nazat"
+  ],
+  "author": "M Nazat",
+  "license": "MIT",
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "gsap": "^3.13.0",
+    "lenis": "^1.3.3",
+    "vite": "^6.3.5"
+  }
+}
