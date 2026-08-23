@@ -1,0 +1,3236 @@
+/* ============================================================
+   PORTOFOLIO — Wafy Putra Pangestu
+   Section 1: Hero
+   ============================================================ */
+
+:root {
+    --navy-900: #0a59ba;
+    --navy-800: #0a1128;
+    --navy-700: #10182e;
+    --navy-600: #16213e;
+    --navy-border: #22304f;
+    --ink-muted: #8b9bc4;
+    --ink-faint: #4a5a80;
+    --spidey-red: #e62429;
+    --spidey-blue: #1e5fb0;
+    --cream: #e9dfc9;
+
+    --font-display: 'Clash Display', sans-serif;
+    --font-body: 'Satoshi', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-comic: 'Bangers', cursive;
+    --font-bungee: 'Bungee', cursive;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    overflow-x: clip;
+    max-width: 100vw;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ============================================================
+   Custom Comic Scrollbar
+   ============================================================ */
+::-webkit-scrollbar {
+    width: 14px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--navy-900);
+    border-left: 3px solid #0B1440;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--spidey-red);
+    border: 3px solid #0B1440;
+    border-radius: 0px; /* Sudut kotak ala komik */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #ff3333;
+}
+
+
+/* registering these lets --reveal-r animate smoothly instead of snapping;
+   browsers without @property support just skip the transition, which is
+   a harmless fallback */
+@property --reveal-x {
+    syntax: '<length-percentage>';
+    inherits: true;
+    initial-value: 50%;
+}
+
+@property --reveal-y {
+    syntax: '<length-percentage>';
+    inherits: true;
+    initial-value: 50%;
+}
+
+@property --reveal-r {
+    syntax: '<length>';
+    inherits: true;
+    initial-value: 0px;
+}
+
+body {
+    background: var(--navy-900);
+    color: #fff;
+    font-family: var(--font-body);
+    margin: 0;
+    overflow-x: hidden; /* Mencegah scroll menyamping akibat jaring yang memanjang */
+}
+
+/* ---------- Layout shell ---------- */
+
+.hero {
+    position: sticky; /* Berubah menjadi sticky agar diam di atas saat discroll */
+    top: 0;
+    z-index: 1; /* Berada di bawah section 2 */
+    height: 100vh; /* Kunci persis setinggi layar */
+    height: 100dvh; /* Adaptif untuk mobile */
+    /* Padding kiri-kanan disimpan di variabel agar bisa dilewati oleh navbar */
+    --hero-pad-x: clamp(2rem, 10vw, 14rem); 
+    padding: 120px var(--hero-pad-x) 90px; /* 120px padding atas agar hero content tidak tertutup navbar 100px */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; /* Susun vertikal agar navbar dan grid berbagi ruang */
+}
+
+/* ---------- Banner Merah Bawah (Marquee) ---------- */
+.hero__banner {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: var(--spidey-red);
+    border-top: 4px solid #ff7b00; 
+    overflow: hidden;
+    z-index: 10;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+}
+
+.hero__banner-marquee {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    width: max-content;
+    animation: scrollMarquee 25s linear infinite; /* Animasi bergeser 25 detik non-stop */
+    z-index: 2;
+}
+
+@keyframes scrollMarquee {
+    0% { transform: translate3d(0, 0, 0); }
+    /* Geser persis sejauh sepertiga (karena ada 3 div kembar) untuk efek tanpa batas */
+    100% { transform: translate3d(-33.3333%, 0, 0); }
+}
+
+/* Tekstur jaring laba-laba transparan di belakang teks banner */
+.hero__banner-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('assets/section1/jaring.png');
+    background-repeat: repeat;
+    background-size: 150px; 
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 1;
+    /* Efek jaring laba-laba ikut menggeser sedikit demi sedikit */
+    animation: scrollBg 40s linear infinite;
+}
+
+@keyframes scrollBg {
+    from { background-position: 0 0; }
+    to { background-position: -600px 0; }
+}
+
+.hero__banner-content {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: 3rem; /* Jarak antara teks dan gambar di dalam satu blok */
+    padding-right: 3rem; /* Padding ekstra di ujung blok untuk menyambung ke blok berikutnya */
+}
+
+.banner-text {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: white;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-style: italic; /* Gaya cepat / dinamis */
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.4);
+    white-space: nowrap;
+}
+
+.banner-icon {
+    height: 55px; 
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.5));
+}
+
+/* subtle web-line texture in the corner, nods to the mask without being literal */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(230, 36, 41, 0.08), transparent 70%);
+    pointer-events: none;
+}
+
+/* ---------- Navbar ---------- */
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Lebarkan keluar menembus padding hero menggunakan margin negatif */
+    margin-left: calc(var(--hero-pad-x) * -1);
+    margin-right: calc(var(--hero-pad-x) * -1);
+    /* Berikan padding mandiri agar isinya tidak menabrak ujung layar */
+    padding-left: clamp(1.25rem, 5vw, 4rem);
+    padding-right: clamp(1.25rem, 5vw, 4rem);
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--navy-border);
+    margin-bottom: clamp(1rem, 2vw, 2rem);
+}
+
+.navbar__logo {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--spidey-red);
+    letter-spacing: 0.02em;
+}
+
+.navbar__links {
+    display: none;
+    gap: 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar__links a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.navbar__links a:hover,
+.navbar__links a:focus-visible {
+    color: #fff;
+}
+
+.navbar__socials {
+    display: flex;
+    gap: 0.6rem;
+}
+
+.navbar__socials a {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--navy-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-muted);
+    text-decoration: none;
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.navbar__socials a:hover,
+.navbar__socials a:focus-visible {
+    border-color: var(--spidey-red);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+@media (min-width: 900px) {
+    .navbar__links {
+        display: flex;
+    }
+}
+
+/* ---------- Hero grid ---------- */
+
+.hero__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+    flex: 1; /* Biarkan grid mengisi sisa ruang di bawah navbar */
+    min-height: 0; /* Cegah grid membesar melewati batas layar */
+}
+
+@media (min-width: 1024px) {
+    .hero__grid {
+        grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.05fr) minmax(0, 0.7fr);
+        gap: 2rem;
+    }
+}
+
+/* ---------- Intro column ---------- */
+
+.hero__intro,
+.hero__about {
+    position: relative;
+    z-index: 5; /* Pastikan selalu berada di atas tulisan raksasa latar belakang */
+}
+
+.hero__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    margin: 0 0 0.6rem;
+    letter-spacing: 0.04em;
+}
+
+.hero__name {
+    font-family: var(--font-bungee);
+    font-weight: 400;
+    font-size: clamp(2.5rem, 6vw, 4.5rem); /* Diperbesar secara signifikan untuk layout tumpuk 3 baris */
+    line-height: 1.1; /* Jarak antar baris diperketat agar lebih solid */
+    letter-spacing: 0.02em;
+    margin: 0 0 1.25rem;
+    color: #fff;
+    /* Efek 3D Spider-Man (Merah Biru) */
+    text-shadow: 2px 2px 0px var(--spidey-red), -2px -2px 0px var(--spidey-blue);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), text-shadow 0.3s ease;
+}
+
+.hero__name:hover {
+    transform: scale(1.03) rotate(-2deg); /* Efek membesar dan miring saat dihover */
+    text-shadow: -3px -3px 0px var(--spidey-red), 3px 3px 0px var(--spidey-blue); /* Bayangan bertukar tempat */
+}
+
+.hero__role {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--cream);
+    margin: 0 0 2rem;
+    padding: 0.6rem 1rem;
+    border-left: 3px solid var(--spidey-red);
+    background: linear-gradient(90deg, rgba(230, 36, 41, 0.15) 0%, transparent 100%);
+    border-radius: 0 6px 6px 0;
+    display: inline-block;
+}
+
+.hero__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--spidey-red); /* Warna merah tetap dipertahankan */
+    color: #fff;
+    font-family: var(--font-bungee);
+    font-size: 0.95rem;
+    font-weight: 400;
+    padding: 0.8rem 1.75rem;
+    border: 3px solid #050a1c;
+    box-shadow: 4px 4px 0 #050a1c;
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.2s ease;
+}
+
+.hero__cta:hover,
+.hero__cta:focus-visible {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 #050a1c;
+    background: #ff3338; /* Warna merah saat disorot tetap dipertahankan */
+    color: #fff;
+}
+
+.hero__cta:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #050a1c;
+}
+
+/* ---------- Photo + outline-text stage ---------- */
+
+.hero__stage {
+    position: relative;
+    height: 100%;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- Logo Gaya Marvel Spider-Man --- */
+.spidey-logo {
+    position: absolute;
+    top: 15%; /* Digeser lebih ke bawah agar teks MY tidak tertutup navbar */
+    left: 50%;
+    transform: translate(-50%, -50%); /* Pusatkan secara absolut */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1; /* Berada DI BELAKANG foto agar tertutup topi */
+    user-select: none;
+    pointer-events: none;
+}
+
+.spidey-logo__top {
+    background-color: #ed1d24; /* Warna merah mutlak Marvel */
+    color: white;
+    font-family: Arial, sans-serif;
+    font-weight: 900;
+    font-size: 0.95rem;
+    padding: 0 0.3rem; /* Kotak ketat ala Marvel */
+    letter-spacing: -0.05em; /* Huruf saling menempel */
+    line-height: 1.1;
+    transform: scale(0.9, 1.4); /* Dibuat ramping dan tinggi */
+    margin-bottom: 0.3rem;
+    z-index: 10;
+}
+
+.spidey-logo__bottom {
+    display: flex;
+    align-items: flex-end; /* Semua huruf rata bawah agar translateY membentuk lengkungan dari bawah */
+    font-family: Impact, 'Arial Black', sans-serif; /* Font tegas dan blok ala logo Spidey */
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    transform: scale(0.9, 1.4); /* Teks dibuat sangat ramping dan ditarik tinggi */
+}
+
+/* Membentuk Arsitektur Lengkungan (Arch) ala Spider-Man Logo */
+.spidey-logo__bottom span { 
+    display: block; 
+    color: transparent; /* Outline mode default */
+    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.2); /* Garis tepi redup */
+    text-shadow: none;
+    transition: color 0.15s ease, -webkit-text-stroke 0.15s ease, text-shadow 0.15s ease;
+}
+
+/* Saat di-hover / menyala */
+.spidey-logo__bottom span.is-lit {
+    color: white;
+    -webkit-text-stroke: 2.5px #ed1d24; 
+    /* Ekstrusi 3D tebal murni ke arah Bawah (Y-axis) */
+    text-shadow: 
+        0px 1px 0 #000, 0px 2px 0 #000, 0px 3px 0 #000, 0px 4px 0 #000,
+        0px 5px 0 #000, 0px 6px 0 #000, 0px 7px 0 #000, 0px 8px 0 #000,
+        0px 9px 0 #000, 0px 10px 0 #000, 0px 11px 0 #000, 0px 12px 0 #000,
+        0px 15px 10px rgba(0,0,0,0.6);
+}
+
+.l-1  { transform: translateY(0) rotate(-8deg); font-size: 1.3em; }
+.l-2  { transform: translateY(-0.15em) rotate(-6deg); font-size: 1.2em; }
+.l-3  { transform: translateY(-0.25em) rotate(-4deg); font-size: 1.1em; }
+.l-4  { transform: translateY(-0.35em) rotate(-2deg); font-size: 1.05em; }
+.l-5  { transform: translateY(-0.4em) rotate(0deg); font-size: 1em; }
+
+.l-dash { transform: translateY(-0.4em) rotate(0deg); font-size: 0.9em; margin: 0 0.1em; }
+
+.l-6  { transform: translateY(-0.4em) rotate(0deg); font-size: 1em; }
+.l-7  { transform: translateY(-0.35em) rotate(2deg); font-size: 1.05em; }
+.l-8  { transform: translateY(-0.25em) rotate(4deg); font-size: 1.1em; }
+.l-9  { transform: translateY(-0.15em) rotate(6deg); font-size: 1.2em; }
+.l-10 { transform: translateY(0) rotate(8deg); font-size: 1.3em; }
+
+/* big Bangers outline word behind the photo */
+/* photo mask-reveal: spiderman mask by default, cursor "uncovers" the real
+   face underneath in a circle that follows the pointer. Both images are
+   plain transparent PNGs, no card/box around them. */
+.stage__photo {
+    position: relative;
+    z-index: 2;
+    width: clamp(240px, 28vw, 360px); /* Diperkecil kembali ke ukuran proporsional */
+    aspect-ratio: 3 / 4;
+    --reveal-x: 50%;
+    --reveal-y: 58%;
+    --reveal-r: 0px;
+}
+
+/* Efek fade out HANYA di bagian bawah (tanpa bayangan kiri-kanan) */
+.stage__photo::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 4; 
+    background: linear-gradient(to bottom, transparent 75%, var(--navy-900) 95%);
+}
+
+.stage__photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center; /* Dikembalikan ke center karena gambar sudah dicrop */
+    pointer-events: none;
+}
+
+.stage__photo .real-img {
+    z-index: 2; /* Wajah asli pindah ke atas! */
+    transform: scale(1);
+    opacity: 0; /* Sembunyikan sepenuhnya dari layar secara default */
+    /* Hanya tampilkan wajah asli dalam bentuk lingkaran kecil di kursor (efek Kaca Pembesar / X-Ray) */
+    -webkit-mask-image: radial-gradient(circle at var(--reveal-x) var(--reveal-y),
+            #000 0,
+            #000 var(--reveal-r),
+            transparent calc(var(--reveal-r) + 15px),
+            transparent 100%);
+    mask-image: radial-gradient(circle at var(--reveal-x) var(--reveal-y),
+            #000 0,
+            #000 var(--reveal-r),
+            transparent calc(var(--reveal-r) + 15px),
+            transparent 100%);
+    transition: opacity 0.2s ease, --reveal-r 0.05s linear;
+}
+
+.stage__photo .mask-img {
+    z-index: 1; /* Topeng pindah ke bawah */
+    transform: scale(1);
+    /* Topeng selalu tampil 100% utuh menutupi area */
+}
+
+/* Munculkan efek kaca pembesar wajah asli HANYA saat foto di-hover/aktif */
+.stage__photo.is-hovering-face .real-img,
+.stage__photo.is-active .real-img {
+    opacity: 1;
+}
+
+.stage__photo.is-hovering-face,
+.stage__photo.is-active {
+    --reveal-r: 25px; /* Lingkaran pembesar/x-ray diperkecil */
+}
+
+.hero__hint {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    margin-top: 0.75rem;
+}
+
+/* ---------- About column ---------- */
+
+.hero__about-label {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--spidey-blue); /* Ganti warna agar kontras dengan merah */
+    margin: 0 0 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+.hero__about-text {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--cream);
+    margin: 0 0 1.5rem;
+}
+
+.hero__find {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: #fff;
+    margin: 0 0 0.6rem;
+}
+
+.hero__find-links {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.hero__find-links a {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid var(--navy-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-muted);
+    text-decoration: none;
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.hero__find-links a:hover,
+.hero__find-links a:focus-visible {
+    border-color: var(--spidey-red);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .stage__word span,
+    .stage__photo .mask-img,
+    .hero__cta,
+    .navbar__socials a,
+    .hero__find-links a {
+        transition: none !important;
+    }
+}
+
+/* ================= ANIMASI MUNCUL (ENTRY) ================= */
+
+@keyframes slideUpFade {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Terapkan animasi masuk ke semua elemen teks dan foto secara berurutan */
+.hero__intro > *,
+.hero__about > *,
+.hero__stage {
+    opacity: 0;
+    animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Memberikan jeda waktu (stagger) agar munculnya bergantian secara elegan */
+.hero__eyebrow { animation-delay: 0.1s; }
+.hero__name { animation-delay: 0.2s; }
+.hero__role { animation-delay: 0.3s; }
+.hero__cta { animation-delay: 0.4s; }
+
+.hero__stage { animation-delay: 0.3s; }
+
+.hero__about-label { animation-delay: 0.4s; }
+.hero__about-text { animation-delay: 0.5s; }
+.hero__find { animation-delay: 0.6s; }
+.hero__find-links { animation-delay: 0.7s; }
+
+/* ================= RESPONSIVE FIXES ================= */
+
+/* ---------- Mobile-first (max-width: 767px) ---------- */
+@media (max-width: 767px) {
+
+    /* --- HERO --- */
+    .hero {
+        --hero-pad-x: 1.25rem;
+        padding: 80px var(--hero-pad-x) 90px;
+        height: auto;
+        min-height: 100vh;
+        min-height: 100dvh;
+    }
+
+    .hero__grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    .hero__intro {
+        order: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero__name {
+        font-size: clamp(2rem, 10vw, 3rem);
+    }
+
+    .hero__cta {
+        font-size: 0.85rem;
+        padding: 0.7rem 1.4rem;
+    }
+
+    /* Photo - bigger & centered on mobile */
+    .hero__stage {
+        order: 2;
+        min-height: 280px;
+    }
+
+    .stage__photo {
+        width: clamp(200px, 55vw, 280px);
+    }
+
+    /* Spidey Logo - scale down for mobile */
+    .spidey-logo {
+        top: 8%;
+    }
+
+    .spidey-logo__bottom {
+        font-size: clamp(1.4rem, 3.5vw, 2rem);
+    }
+
+    .spidey-logo__top {
+        font-size: 0.7rem;
+    }
+
+    /* About - move below photo */
+    .hero__about {
+        order: 3;
+        text-align: center;
+    }
+
+    .hero__about-text {
+        font-size: 0.88rem;
+        line-height: 1.7;
+    }
+
+    .hero__find-links {
+        justify-content: center;
+    }
+
+    /* Banner */
+    .hero__banner {
+        height: 50px;
+    }
+
+    .banner-text {
+        font-size: 0.85rem;
+        letter-spacing: 0.1em;
+    }
+
+    .banner-icon {
+        height: 35px;
+    }
+
+    .hero__banner-content {
+        gap: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    /* --- SECTION 2 (TENTANG) --- */
+    .section-two {
+        padding: 4rem 1.25rem;
+    }
+
+    .section-two::before,
+    .section-two::after {
+        width: 120px;
+        height: 120px;
+    }
+
+    .s2-content {
+        padding: 40px 0;
+    }
+
+    .s2-grid {
+        gap: 24px;
+    }
+
+    .s2-photo-wrap {
+        max-width: 260px;
+        margin: 0 auto;
+    }
+
+    h1.s2-title {
+        font-size: clamp(1.2rem, 5vw, 1.8rem);
+        text-align: center;
+    }
+
+    .s2-bio p.lead {
+        font-size: 13px;
+        text-align: center;
+    }
+
+    .s2-bio p.desc {
+        font-size: 13px;
+        text-align: left;
+    }
+
+    .s2-action {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .s2-btn-comic {
+        width: 100%;
+        font-size: 0.85rem;
+        padding: 0.7rem 1.25rem;
+    }
+
+    .s2-stat-card .value {
+        font-size: 1rem;
+    }
+
+    /* --- SECTION 3 (SKILLS) --- */
+    .s3-container {
+        padding: 0 1.25rem;
+    }
+
+    .s3-header-strip {
+        height: 70px;
+        margin-bottom: 2rem;
+    }
+
+    .s3-title {
+        font-size: clamp(1.3rem, 5vw, 2rem);
+        letter-spacing: 1px;
+    }
+
+    .s3-head-icon {
+        width: clamp(28px, 6vw, 40px);
+    }
+
+    .s3-head-icon.left {
+        margin-right: 0.75rem;
+    }
+
+    .s3-head-icon.right {
+        margin-left: 0.75rem;
+    }
+
+    /* Spider-Man decoration - hide on very small screens */
+    .s3-spidey-hang {
+        display: none;
+    }
+
+    .s3-web-corner {
+        width: clamp(100px, 25vw, 200px);
+        opacity: 0.15;
+    }
+
+    .skill-card {
+        padding: 1.25rem;
+    }
+
+    .stats-title {
+        font-size: 1.1rem;
+    }
+
+    /* --- SECTION 4 (PORTFOLIO) --- */
+    .section-four {
+        padding: 10rem 0 4rem 0;
+    }
+
+    .marquee-divider {
+        top: -35px;
+        height: 180px;
+    }
+
+    .marquee-strip {
+        font-size: 1.5rem;
+        padding: 1rem 0;
+    }
+
+    .marquee-icon {
+        width: 32px;
+        height: 32px;
+        margin: 0 1rem;
+    }
+
+    .marquee-top {
+        transform: rotate(2deg);
+    }
+
+    .marquee-bottom {
+        top: 120px;
+        transform: rotate(-3deg);
+    }
+
+    .s4-filters {
+        padding: 0 1.25rem;
+        gap: 0.6rem;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .s4-filter-btn {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.8rem;
+        box-shadow: 3px 3px 0 #050a1c;
+        border-width: 2px;
+    }
+
+    .s4-container {
+        padding: 0 1.25rem;
+    }
+
+    .s4-grid {
+        gap: 1.25rem;
+    }
+
+    /* Mobile: show images & tags always (no hover on touch) */
+    .project-img-wrap {
+        max-height: 200px;
+        opacity: 1;
+        height: 200px;
+    }
+
+    .project-img-wrap img {
+        height: 200px;
+    }
+
+    .meme-decoration {
+        padding: 1rem;
+    }
+
+    .meme-decoration img {
+        max-height: 150px;
+    }
+
+    .project-tags {
+        max-height: 100px;
+        opacity: 1;
+        margin-bottom: 1rem;
+    }
+
+    .project-actions {
+        max-height: 50px;
+        opacity: 1;
+    }
+
+    .project-content {
+        padding: 0.75rem 1rem 1rem;
+    }
+
+    .project-badge {
+        margin: 1rem 1rem 0;
+    }
+
+    .project-title {
+        font-size: 1.15rem;
+    }
+
+    .project-desc {
+        font-size: 0.88rem;
+        line-height: 1.5;
+    }
+
+    .carousel-btn {
+        opacity: 1;
+        width: 28px;
+        height: 28px;
+        font-size: 0.85rem;
+    }
+
+    .meme-decoration {
+        padding: 1rem;
+    }
+
+    .meme-decoration img {
+        max-height: 150px;
+    }
+
+    /* --- SECTION 5 (CONTACT) --- */
+    .section-five {
+        padding: 4rem 0;
+    }
+
+    .s5-header-strip {
+        margin-bottom: 2rem;
+        padding: 0.75rem 0;
+    }
+
+    .s5-title {
+        font-size: clamp(1.3rem, 5vw, 2rem);
+    }
+
+    .s5-container {
+        padding: 0 1.25rem;
+    }
+
+    .s5-info {
+        padding: 1.5rem;
+    }
+
+    .s5-info h2 {
+        font-size: 1.4rem;
+    }
+
+    .s5-info p {
+        font-size: 0.92rem;
+    }
+
+    .s5-contact-list li {
+        font-size: 0.8rem;
+        gap: 0.6rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .s5-contact-list i,
+    .s5-contact-list .material-symbols-outlined {
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+
+    .s5-contact-list a {
+        word-break: break-all;
+    }
+
+    .s5-form-wrapper {
+        padding: 1.5rem;
+    }
+
+    .s5-form label {
+        font-size: 1rem;
+    }
+
+    .s5-form input,
+    .s5-form textarea {
+        font-size: 0.9rem;
+        padding: 0.75rem;
+    }
+
+    .btn-submit {
+        font-size: 1rem;
+        padding: 0.8rem;
+    }
+
+    /* Map HUD */
+    .s5-map-wrapper.mt-8 {
+        margin-top: 1rem;
+    }
+
+    /* Spidey Puller - hide on mobile (takes too much space) */
+    .spidey-puller {
+        display: none;
+    }
+
+    .jaring-css {
+        display: none;
+    }
+}
+
+/* ---------- Tablet (768px - 1023px) ---------- */
+@media (min-width: 768px) and (max-width: 1023px) {
+
+    .hero {
+        --hero-pad-x: 2.5rem;
+        padding: 90px var(--hero-pad-x) 90px;
+    }
+
+    .hero__grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+
+    .hero__intro {
+        grid-column: 1;
+    }
+
+    .hero__stage {
+        grid-column: 2;
+        grid-row: 1 / 3;
+    }
+
+    .hero__about {
+        grid-column: 1;
+    }
+
+    .hero__name {
+        font-size: clamp(2rem, 5vw, 3rem);
+    }
+
+    .stage__photo {
+        width: clamp(200px, 30vw, 300px);
+    }
+
+    .spidey-logo__bottom {
+        font-size: clamp(1.6rem, 3vw, 2.4rem);
+    }
+
+    .banner-text {
+        font-size: 1rem;
+    }
+
+    .banner-icon {
+        height: 40px;
+    }
+
+    /* Section 2 */
+    .section-two {
+        padding: 5rem 2rem;
+    }
+
+    .s2-content {
+        padding: 60px 24px;
+    }
+
+    /* Section 3 */
+    .s3-header-strip {
+        height: 80px;
+    }
+
+    .s3-container {
+        padding: 0 2rem;
+    }
+
+    /* Section 4 */
+    .s4-container {
+        padding: 0 2rem;
+    }
+
+    .s4-filters {
+        padding: 0 2rem;
+    }
+
+    .section-four {
+        padding: 11rem 0 5rem 0;
+    }
+
+    /* Mobile: show images & tags always for tablets too */
+    .project-img-wrap {
+        max-height: 220px;
+        opacity: 1;
+        height: 220px;
+    }
+
+    .project-img-wrap img {
+        height: 220px;
+    }
+
+    .project-tags {
+        max-height: 100px;
+        opacity: 1;
+        margin-bottom: 1rem;
+    }
+
+    .project-actions {
+        max-height: 50px;
+        opacity: 1;
+    }
+
+    .carousel-btn {
+        opacity: 1;
+    }
+
+    /* Section 5 */
+    .s5-container {
+        padding: 0 2rem;
+    }
+}
+
+/* ---------- Small phones (max-width: 400px) ---------- */
+@media (max-width: 400px) {
+
+    .hero__name {
+        font-size: 1.8rem;
+    }
+
+    .hero__cta {
+        font-size: 0.78rem;
+        padding: 0.6rem 1.2rem;
+    }
+
+    .s4-filter-btn {
+        font-size: 0.6rem;
+        padding: 0.4rem 0.6rem;
+    }
+
+    .s3-title {
+        font-size: 1.2rem;
+    }
+
+    .s5-title {
+        font-size: 1.2rem;
+    }
+
+    .marquee-strip {
+        font-size: 1.2rem;
+        padding: 0.75rem 0;
+    }
+
+    .marquee-icon {
+        width: 24px;
+        height: 24px;
+        margin: 0 0.5rem;
+    }
+
+    .marquee-divider {
+        height: 150px;
+    }
+
+    .marquee-bottom {
+        top: 100px;
+    }
+
+    .project-title {
+        font-size: 1rem;
+    }
+
+    .project-desc {
+        font-size: 0.82rem;
+    }
+
+    .s2-stat-card {
+        padding: 12px 14px;
+    }
+
+    .s2-stat-card .value {
+        font-size: 0.9rem;
+    }
+
+    .s5-contact-list li {
+        font-size: 0.72rem;
+    }
+
+    .s5-info h2 {
+        font-size: 1.2rem;
+    }
+}
+
+/* ================= SECTION 2 ================= */
+
+.section-two {
+    position: relative;
+    min-height: 100vh;
+    z-index: 2; /* Harus lebih tinggi dari .hero agar menutupi */
+    /* Warna biru Spiderman (bergradasi melingkar dari tengah terang ke ujung gelap seperti referensi) */
+    background: radial-gradient(circle at center, #105bd8 0%, #073891 100%);
+    padding: 6rem var(--hero-pad-x);
+    border-top: 4px solid var(--spidey-red); /* Garis batas tegas seperti di komik */
+    box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.6); /* Bayangan jatuh ke atas (menutupi section 1) */
+}
+
+/* ---------- SPIDER-MAN HANGING & WEB CSS ---------- */
+
+/* Kontainer Spidey yang fixed di layar */
+.spidey-puller {
+    position: fixed;
+    top: -100vh; /* Sembunyi di atas layar sejauh 1 tinggi layar */
+    right: 5%;
+    height: 100vh; /* Tinggi pas 1 layar */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Pastikan Spidey selalu di bagian Bawah layar saat muncul */
+    z-index: 50;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+}
+
+/* Garis jaring buatan agar tidak putus saat gambar mengecil di mobile */
+.spidey-puller::before {
+    content: '';
+    width: 2px;
+    flex-grow: 1;
+    background: linear-gradient(to bottom, transparent, #e9dfc9);
+    margin: 0 auto;
+    opacity: 0.8;
+}
+
+.spidey-puller img {
+    width: clamp(120px, 15vw, 200px); /* Ukuran adaptif dari HP ke Desktop */
+    flex-shrink: 0;
+    filter: drop-shadow(0 15px 15px rgba(0,0,0,0.6));
+}
+
+/* Class ini ditambahkan oleh JS saat mulai scroll */
+.spidey-puller.is-visible {
+    transform: translateY(100vh); /* Meluncur turun sejauh 1 layar, Spidey pas menyentuh bawah layar */
+}
+
+/* Jaring Lab-Laba Murni CSS (Gaya Komik) */
+.jaring-css {
+  /* Atur ketebalan agar super tipis */
+  width: 1px; 
+  
+  /* Meniru gaya komik: tengah putih, pinggir abu-abu (gray) */
+  background-color: white;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+  
+  /* Murni CSS: Selalu menempel di atap Section 2 */
+  position: absolute;
+  bottom: 100%; 
+  
+  /* Posisi horizontal disesuaikan dengan ujung tali jaring di gambar Spider-Man */
+  /* (Lebih ke kiri dari tengah gambar) */
+  right: calc(15% + 130px); 
+  
+  /* Tinggi absolut ke atas (akan tenggelam di balik Spidey) */
+  height: 150vh; 
+  
+  z-index: -1; /* Di belakang tangan Spidey */
+  opacity: 0; /* Sembunyi secara default */
+  transition: opacity 0.3s;
+}
+
+/* Munculkan jaring secara halus bersamaan dengan turunnya Spider-Man */
+body.is-scrolling .jaring-css {
+    opacity: 1;
+}
+
+/* Ornamen Jaring di Ujung Kiri dan Kanan Atas Section 2 */
+.section-two::before,
+.section-two::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 250px; /* Sesuaikan ukuran ornamen jaring */
+    height: 250px;
+    background-image: url('assets/section2/bg-spider-web-corner.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none; /* Agar tidak mengganggu jika diklik */
+    z-index: 1; /* Di bawah teks tapi di atas background biru */
+}
+
+/* Sudut Kiri Atas */
+.section-two::before {
+    left: 0;
+    background-position: top left;
+}
+
+/* Sudut Kanan Atas (Gambar dibalik secara horizontal agar simetris) */
+.section-two::after {
+    right: 0;
+    background-position: top left;
+    transform: scaleX(-1); 
+}
+
+.section-two__container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+/* ================= SECTION 2 ABOUT ME (Dari test.html) ================= */
+
+.s2-web {
+    position: absolute;
+    opacity: .55;
+    pointer-events: none;
+    z-index: 1; /* Di bawah teks */
+}
+
+.s2-web.tl {
+    top: -40px;
+    left: -60px;
+    width: 340px;
+    height: 340px;
+}
+
+.s2-web.tr {
+    top: -40px;
+    right: -60px;
+    width: 340px;
+    height: 340px;
+    transform: scaleX(-1);
+}
+
+.s2-web.bl {
+    bottom: 0;
+    left: -40px;
+    width: 220px;
+    height: 220px;
+    transform: scaleY(-1);
+    opacity: .3;
+}
+
+.s2-web.br {
+    bottom: 0;
+    right: -40px;
+    width: 220px;
+    height: 220px;
+    transform: scale(-1, -1);
+    opacity: .3;
+}
+
+.s2-watermark {
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 640px;
+    height: 640px;
+    opacity: .05;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.s2-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 80px 24px 80px; /* Ditambahkan padding bawah agar tidak nabrak Section 3 */
+    font-family: 'Inter', sans-serif;
+}
+@media (min-width: 768px) {
+    .s2-content {
+        padding: 100px 48px 100px;
+    }
+}
+
+.s2-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    justify-content: center;
+    margin-bottom: 6px;
+}
+
+.s2-eyebrow .line {
+    height: 2px;
+    width: 60px;
+    background: linear-gradient(90deg, transparent, var(--spidey-red));
+}
+
+.s2-eyebrow .line.r {
+    background: linear-gradient(90deg, var(--spidey-red), transparent);
+}
+
+.s2-eyebrow span {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    letter-spacing: 6px;
+    font-size: 13px;
+    color: #a9bcec; /* Lebih terang agar kontras dengan background */
+    text-transform: uppercase;
+}
+
+h1.s2-title {
+    font-family: var(--font-bungee);
+    font-weight: 400;
+    font-size: clamp(1.5rem, 3.5vw, 2.5rem); /* Diperkecil lagi */
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    margin: 0 0 1rem; /* Jarak ke paragraf di bawahnya */
+    color: #fff;
+    text-align: left; /* Rata kiri sejajar dengan teks bio */
+    transform-origin: left center; /* Titik tumpu animasi hover di kiri */
+    /* Efek 3D Spider-Man (Merah Biru) */
+    text-shadow: 2px 2px 0px var(--spidey-red), -2px -2px 0px var(--spidey-blue);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), text-shadow 0.3s ease;
+    -webkit-text-stroke: 0;
+}
+
+
+
+.s2-title-sub {
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+    letter-spacing: 3px;
+    color: #a9bcec; /* Lebih terang agar kontras dengan background */
+    font-size: 15px;
+    text-transform: uppercase;
+    margin-bottom: 56px;
+}
+
+.s2-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: center;
+}
+@media (min-width: 1024px) {
+    .s2-grid {
+        grid-template-columns: 340px 1fr;
+        gap: 56px;
+        align-items: start;
+    }
+}
+
+/* PHOTO CARD */
+.s2-photo-wrap {
+    position: relative;
+}
+
+.s2-photo-card {
+    position: relative;
+    background:
+        linear-gradient(160deg, rgba(255, 255, 255, .06), rgba(0, 0, 0, .35)),
+        var(--navy-900);
+    border: 2px solid var(--spidey-red);
+    border-radius: 6px;
+    padding: 14px;
+    box-shadow: 0 0 0 1px rgba(226, 35, 26, .25), 0 30px 60px rgba(0, 0, 0, .5), 0 0 50px rgba(29, 93, 240, .25);
+    clip-path: polygon(0 18px, 18px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%);
+}
+
+.s2-photo-inner {
+    width: 100%;
+    aspect-ratio: 3/4;
+    border-radius: 2px;
+    background:
+        radial-gradient(circle at 50% 30%, #22307a, #050a1c 75%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.s2-photo-inner svg {
+    width: 62%;
+    height: 62%;
+    opacity: .85;
+}
+
+.s2-photo-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top; /* Menjaga agar kepala tidak terpotong */
+    filter: grayscale(100%);
+    transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.s2-photo-card:hover .s2-photo-inner img {
+    filter: grayscale(0%);
+    transform: scale(1.05); /* Sedikit efek zoom saat di-hover */
+}
+
+.s2-photo-caption {
+    margin-top: 14px;
+    text-align: center;
+}
+
+.s2-photo-caption .name {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: #f5f7ff;
+    text-transform: uppercase;
+}
+
+.s2-photo-caption .role {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: var(--spidey-red);
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-top: 2px;
+    text-transform: uppercase;
+}
+
+.s2-corner-badge {
+    position: absolute;
+    top: -16px;
+    right: -16px;
+    width: 52px;
+    height: 52px;
+    background: var(--spidey-red);
+    border-radius: 50%;
+    border: 3px solid var(--navy-900);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .5);
+}
+
+.s2-corner-badge svg {
+    width: 26px;
+    height: 26px;
+    fill: #f5f7ff;
+}
+
+/* BIO SIDE */
+.s2-bio p.lead {
+    font-family: var(--font-bungee);
+    font-size: 15px; /* Diperkecil lagi agar lebih pas */
+    font-weight: 400;
+    color: #f5f7ff;
+    line-height: 1.6;
+    margin: 0 0 18px;
+    letter-spacing: 0.04em;
+}
+
+.s2-bio p.lead strong {
+    color: var(--spidey-red);
+    font-weight: 700;
+}
+
+.s2-bio p.desc {
+    font-family: var(--font-mono);
+    font-size: 14.5px;
+    line-height: 1.85;
+    color: var(--cream);
+    margin: 0 0 30px;
+    max-width: 640px;
+    text-align: justify; /* Rata kanan kiri */
+}
+
+.s2-stat-row {
+    display: grid;
+    grid-template-columns: 1fr; /* Susun ke bawah di layar HP */
+    gap: 16px;
+    margin-bottom: 34px;
+}
+@media (min-width: 640px) {
+    .s2-stat-row {
+        grid-template-columns: repeat(3, 1fr); /* Tiga kolom di tablet/PC */
+    }
+}
+
+.s2-stat-card {
+    background: #0a59ba; /* Warna biru konsep */
+    border: 3px solid #050a1c; /* Garis tepi tebal ala komik */
+    border-radius: 4px;
+    padding: 16px 18px;
+    box-shadow: 4px 4px 0 #050a1c; /* Bayangan solid komik */
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.s2-stat-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 #050a1c;
+}
+
+.s2-action {
+    display: flex;
+    gap: 16px; /* Jarak yang konsisten dengan gap antar kotak profil */
+    flex-wrap: wrap;
+    margin-top: 8px; /* Tambahan jarak kecil karena kotak sudah punya margin-bottom */
+}
+
+/* TOMBOL DOWNLOAD CV GAYA KOMIK */
+.s2-btn-comic {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Jarak antara icon dan text (jika ada) */
+    background: #e9007f; /* Hot pink sesuai gambar referensi */
+    color: #fff;
+    font-family: var(--font-bungee);
+    font-size: 0.95rem; /* Ukuran font diatur ideal */
+    font-weight: 400;
+    padding: 0.8rem 1.75rem; /* Padding yang lebih presisi (gak kekecilan/kebesaran) */
+    border: 3px solid #050a1c;
+    box-shadow: 4px 4px 0 #050a1c; /* Bayangan diperkecil */
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.s2-btn-comic:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 #050a1c; /* Bayangan hover diperkecil */
+    color: #fff;
+}
+
+.s2-btn-comic:active {
+    transform: translate(2px, 2px); /* Menekan lebih sedikit */
+    box-shadow: 1px 1px 0 #050a1c; /* Bayangan active diperkecil */
+}
+
+/* Modifikasi gaya spesifik untuk GitHub */
+.s2-btn-comic.s2-btn-github {
+    background: #050a1c; /* Warna gelap khas GitHub */
+    /* Ubah bayangannya jadi cerah/ngejreng agar tidak 'mati' menabrak background biru tua */
+    box-shadow: 4px 4px 0 #00e5ff;
+}
+
+.s2-btn-comic.s2-btn-github:hover {
+    box-shadow: 5px 5px 0 #00e5ff;
+}
+
+.s2-btn-comic.s2-btn-github:active {
+    box-shadow: 1px 1px 0 #00e5ff;
+}
+
+.s2-stat-card .label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #a9bcec; /* Biru muda agar kontras dengan biru background */
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.s2-stat-card .value {
+    font-family: 'Bangers', cursive;
+    letter-spacing: 1px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #f5f7ff;
+    text-shadow: 2px 2px 0 #e62429; /* Efek shadow merah Spider-Man agar tetap komik */
+}
+
+.s2-skills-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: #f5f7ff;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 0 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.s2-skills-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(226, 35, 26, .6), transparent);
+}
+
+.s2-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.s2-skill-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(226, 35, 26, .08);
+    border: 1px solid rgba(226, 35, 26, .5);
+    color: #f5f7ff;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 9px 16px 9px 12px;
+    border-radius: 999px;
+}
+
+.s2-skill-pill svg {
+    width: 14px;
+    height: 14px;
+    fill: var(--spidey-red);
+}
+
+.s2-cta-row {
+    margin-top: 36px;
+    display: flex;
+    gap: 16px;
+}
+
+.s2-btn {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    font-size: 13px;
+    text-transform: uppercase;
+    padding: 14px 30px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.s2-btn:hover {
+    transform: translateY(-2px);
+}
+
+.s2-btn.primary {
+    background: var(--spidey-red);
+    color: #f5f7ff;
+    box-shadow: 0 8px 24px rgba(226, 35, 26, .45);
+}
+
+.s2-btn.primary:hover {
+    box-shadow: 0 12px 30px rgba(226, 35, 26, .6);
+}
+
+.s2-btn.ghost {
+    background: transparent;
+    color: #f5f7ff;
+    border: 1px solid rgba(255, 255, 255, .4);
+}
+
+.s2-btn.ghost:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* COMIC STATS */
+.s2-stats-comic {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 480px;
+    background: #fdfcf8;
+    border: 3px solid #050a1c;
+    padding: 1.5rem 1.5rem 1.5rem 1.25rem;
+    box-shadow: 6px 6px 0 rgba(0,0,0,0.8);
+    position: relative;
+    margin-bottom: 34px;
+}
+
+.s2-stats-target {
+    position: absolute;
+    top: -20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    z-index: 10;
+}
+
+.s2-stats-target svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.s2-stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.s2-stat-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    width: 100px;
+    flex-shrink: 0;
+    color: #050a1c;
+}
+
+.s2-stat-bar-wrap {
+    flex: 1;
+    height: 20px;
+    background: #f4ecd8;
+    border: 2px solid #050a1c;
+    box-shadow: 3px 3px 0 #050a1c;
+    display: flex;
+}
+
+.s2-stat-bar-fill {
+    height: 100%;
+    border-right: 2px solid #050a1c;
+    background-image: repeating-linear-gradient(
+        to right,
+        transparent,
+        transparent 10px,
+        rgba(255,255,255,0.4) 10px,
+        rgba(255,255,255,0.4) 11px
+    );
+}
+
+.s2-bar-pink { background-color: #f15bb5; }
+.s2-bar-cyan { background-color: #00bbf9; }
+.s2-bar-yellow { background-color: #fee440; }
+
+.s2-stat-val {
+    font-family: 'Bangers', cursive;
+    font-size: 1.2rem;
+    color: #050a1c;
+    text-shadow: 2px 2px 0 #f15bb5;
+    text-align: right;
+    white-space: nowrap;
+    letter-spacing: 1px;
+}
+
+/* ================= SECTION 3 ================= */
+.section-three {
+    position: relative;
+    min-height: 100vh;
+    background: var(--navy-900); /* Samakan dengan warna background Section 1 (Body) */
+    padding-bottom: 6rem;
+    border-top: 4px solid var(--spidey-red);
+    z-index: 3;
+    overflow: hidden;
+}
+
+.s3-bg-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: url('assets/section1/jaring.png'); /* Mengganti pola titik dengan jaring */
+    background-size: 200px; /* Ukuran jaring agak besar biar kelihatan */
+    background-repeat: repeat;
+    opacity: 0.1; /* Samar-samar biar teks tetap terbaca */
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Base class untuk hiasan absolut */
+.s3-decor {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Jaring di sudut kanan bawah */
+.s3-web-corner {
+    bottom: -30px;
+    right: -30px;
+    width: clamp(200px, 35vw, 450px);
+    opacity: 0.25;
+    z-index: 2;
+    transform: rotate(90deg); /* Biar lengkungannya pas di pojok */
+}
+
+/* Spider-Man Menggantung (Kiri Atas) */
+.s3-spidey-hang {
+    top: -10px;
+    left: 3%; /* Geser sedikit ke kiri agar tidak terlalu menutupi teks card */
+    width: clamp(90px, 15vw, 160px);
+    z-index: 30; /* Dinaikkan ke atas 20 agar posisinya di depan kotak skill! */
+    filter: drop-shadow(0 15px 15px rgba(0,0,0,0.6));
+    animation: swingSpidey 5s ease-in-out infinite alternate;
+    transform-origin: top center; /* Tumpuan ayunan di paling atas */
+}
+
+@keyframes swingSpidey {
+    0% { transform: rotate(-8deg); }
+    100% { transform: rotate(8deg); }
+}
+
+/* Ikon Spidey Kecil di Kiri Kanan Banner */
+.s3-head-icon {
+    position: relative; /* Karena dia di dalam flexbox strip */
+    width: clamp(40px, 8vw, 65px);
+    height: auto;
+    filter: drop-shadow(3px 3px 0px #050a1c);
+    z-index: 12;
+}
+.s3-head-icon.left { 
+    margin-right: 1.5rem; 
+    transform: scaleX(-1); /* Balik arah menghadap teks */
+}
+.s3-head-icon.right { 
+    margin-left: 1.5rem; 
+}
+
+.torn-edge {
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 95% 100%, 90% 90%, 85% 100%, 80% 90%, 75% 100%, 70% 90%, 65% 100%, 60% 90%, 55% 100%, 50% 90%, 45% 100%, 40% 90%, 35% 100%, 30% 90%, 25% 100%, 20% 90%, 15% 100%, 10% 90%, 5% 100%, 0 90%);
+}
+
+.s3-header-strip {
+    position: relative;
+    width: 100%;
+    background: var(--spidey-red);
+    border-top: 4px solid #ff7b00;
+    border-bottom: 4px solid #ff7b00;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    margin-bottom: 4rem;
+}
+
+.s3-title {
+    font-family: var(--font-bungee);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: #fff;
+    font-style: italic;
+    text-shadow: 4px 4px 0 #050a1c;
+    transform: skewX(-10deg);
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.s3-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--hero-pad-x);
+    position: relative;
+    z-index: 20;
+}
+
+.s3-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+@media (min-width: 768px) {
+    .s3-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (min-width: 1024px) {
+    .s3-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.skill-card {
+    background: #0a59ba; /* Warna biru konsep komik seperti di section 2 */
+    border: 3px solid #050a1c; /* Garis tepi tebal ala komik */
+    padding: 1.5rem;
+    border-radius: 4px;
+    box-shadow: 4px 4px 0 #050a1c; /* Bayangan solid komik */
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.5s ease;
+}
+
+.skill-card.is-visible {
+    animation: fadeUp 0.5s forwards;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
+.skill-card.is-visible:hover {
+    transform: translate(-4px, -4px); /* Mengalahkan animasi fadeUp saat dihover */
+    box-shadow: 8px 8px 0 #050a1c;
+    border-color: #050a1c;
+}
+
+.skill-card-top {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.skill-icon-wrap {
+    width: 48px;
+    height: 48px;
+    background: var(--spidey-red);
+    border-radius: 50%;
+    border: 2px solid #ff7b00;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    transition: box-shadow 0.3s ease;
+}
+
+.skill-card:hover .skill-icon-wrap {
+    box-shadow: 0 0 15px rgba(255, 123, 0, 0.8);
+}
+
+.skill-icon-wrap i {
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.skill-name {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.skill-progress-wrap {
+    position: relative;
+    width: 100%;
+    height: 8px;
+    background: #000;
+    border-radius: 4px;
+}
+
+.skill-progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: linear-gradient(90deg, var(--spidey-red) 0%, #ff7b00 100%);
+    border-radius: 4px;
+    width: 0%;
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skill-progress-glow {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(255,255,255,0.8);
+}
+
+.skill-percent {
+    text-align: right;
+    margin-top: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+}
+
+/* ================= GITHUB STATS ================= */
+.github-stats-container {
+    margin-top: 4rem;
+    text-align: center;
+    position: relative;
+    z-index: 20;
+    animation: fadeUp 0.8s forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.stats-title {
+    font-family: var(--font-bungee);
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 0 #050a1c;
+}
+
+.stats-image-wrapper {
+    background: #0a59ba;
+    border: 3px solid #050a1c;
+    border-radius: 4px;
+    padding: 1rem;
+    box-shadow: 4px 4px 0 #050a1c;
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stats-image-wrapper:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 8px 8px 0 #050a1c;
+}
+
+.stats-image-wrapper img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 2px;
+}
+
+/* ================= SECTION 4 & MARQUEE ================= */
+.marquee-divider {
+    position: absolute;
+    top: -50px;
+    left: -10%;
+    width: 120%;
+    height: 250px;
+    z-index: 25;
+    pointer-events: none;
+}
+
+.marquee-strip {
+    position: absolute;
+    width: 200%;
+    display: flex;
+    white-space: nowrap;
+    padding: 1.5rem 0;
+    font-family: var(--font-bungee);
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    font-style: italic;
+    letter-spacing: 2px;
+}
+
+.marquee-top {
+    top: 0px;
+    background: var(--spidey-red);
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border-top: 4px solid #c63c01;
+    border-bottom: 4px solid #c63c01;
+    z-index: 2;
+    transform-origin: left center;
+    transform: rotate(3deg);
+}
+
+.marquee-bottom {
+    top: 160px;
+    background: #050a1c;
+    color: var(--spidey-red);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    border-top: 4px solid #1a2245;
+    border-bottom: 4px solid #1a2245;
+    z-index: 1;
+    transform-origin: left center;
+    transform: rotate(-4deg);
+}
+
+.marquee-text {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+}
+
+/* Hollow Text Shadow Effect */
+.marquee-top .marquee-text::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 4px;
+    top: 8px;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
+    z-index: -1;
+}
+
+.marquee-bottom .marquee-text::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 4px;
+    top: 8px;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(227, 30, 36, 0.4);
+    z-index: -1;
+}
+
+.marquee-content {
+    display: flex;
+    align-items: center;
+}
+
+.animate-marquee-left {
+    animation: marquee-left 25s linear infinite;
+}
+
+.animate-marquee-right {
+    animation: marquee-right 25s linear infinite;
+}
+
+@keyframes marquee-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
+
+.marquee-icon {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    margin: 0 2rem;
+}
+
+.mx-4 { margin-left: 2rem; margin-right: 2rem; }
+
+.mix-blend {
+    opacity: 0.9;
+    mix-blend-mode: screen;
+}
+
+.section-four {
+    position: relative;
+    min-height: 100vh;
+    background: var(--navy-900);
+    padding: 12rem 0 6rem 0; /* Jarak atas diperbesar agar header tidak tertutup marquee */
+    border-top: 4px solid var(--spidey-red);
+    z-index: 4;
+    overflow-x: hidden;
+}
+
+.s4-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    padding: 0 var(--hero-pad-x);
+}
+
+.s4-title {
+    font-family: var(--font-bungee);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: #fff;
+    text-transform: uppercase;
+    font-style: italic;
+    transform: skewX(-12deg);
+    letter-spacing: 2px;
+    text-shadow: 0 4px 0 var(--spidey-red);
+    text-align: center;
+    margin: 0;
+}
+
+.s4-subtitle {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: #CFE0F5;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.s4-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0 var(--hero-pad-x);
+    margin-top: 3rem;
+    margin-bottom: 4rem;
+}
+
+.clip-cut-btn {
+    /* Dihilangkan karena desain referensi berbentuk kotak solid */
+}
+
+.s4-filter-btn {
+    background: #0a59ba; /* Biru terang khas komik */
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    font-family: var(--font-bungee);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 3px solid #050a1c;
+    box-shadow: 5px 5px 0 #050a1c;
+    cursor: pointer;
+    transition: all 0.1s ease-out;
+    position: relative;
+    border-radius: 2px;
+}
+
+.s4-filter-btn.active {
+    background: var(--spidey-red); /* Merah jika sedang aktif */
+    color: #fff;
+    transform: translate(3px, 3px);
+    box-shadow: 2px 2px 0 #050a1c;
+}
+
+.s4-filter-btn:not(.active):hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0 #050a1c;
+    color: #fff;
+}
+
+.s4-filter-indicator {
+    display: none; /* Disembunyikan karena indikator diganti dengan warna solid */
+}
+
+.s4-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--hero-pad-x);
+}
+
+.s4-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .s4-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (min-width: 1024px) {
+    .s4-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.clip-cut {
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+/* ================= SECTION 4: MEME DECORATION ================= */
+.meme-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.meme-decoration:hover {
+    opacity: 1;
+}
+
+.meme-decoration img {
+    max-width: 100%;
+    max-height: 250px;
+    object-fit: contain;
+    filter: grayscale(80%) drop-shadow(4px 4px 0px #050a1c);
+    transition: filter 0.3s ease;
+    cursor: pointer;
+}
+
+.meme-decoration:hover img {
+    filter: grayscale(0%) drop-shadow(8px 8px 0px #c63c01);
+}
+
+@media (min-width: 1024px) {
+    .meme-decoration {
+        /* Grid 3 kolom, 4 proyek memakan 1 baris penuh + 1 kolom di baris ke-2.
+           Meme akan mengambil sisa 2 kolom di baris ke-2 tersebut. */
+        grid-column: span 2;
+    }
+}
+
+.project-card {
+    background: #0a59ba; /* Comic blue */
+    border: 3px solid #050a1c;
+    box-shadow: 6px 6px 0 #050a1c;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.project-card:hover,
+.project-card.row-hover {
+    box-shadow: 10px 10px 0 #050a1c;
+    transform: translate(-4px, -4px);
+    border-color: #050a1c;
+}
+
+/* Dekorasi jaring di sudut atas-kanan */
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 65px;
+    height: 65px;
+    background-image: url('assets/section1/jaring.png');
+    background-size: cover;
+    background-position: top right;
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+/* Dekorasi jaring di sudut bawah-kiri */
+.project-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 65px;
+    height: 65px;
+    background-image: url('assets/section1/jaring.png');
+    background-size: cover;
+    background-position: bottom left;
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0.7;
+    transform: rotate(180deg);
+    transition: opacity 0.3s ease;
+}
+
+/* Redupkan jaring saat di-hover agar tidak mengganggu bacaan/gambar */
+.project-card:hover::before,
+.project-card.row-hover::before,
+.project-card:hover::after,
+.project-card.row-hover::after {
+    opacity: 0.1;
+}
+
+.project-badge {
+    order: 1;
+    position: relative;
+    margin: 1.5rem 1.5rem 0 1.5rem;
+    width: max-content;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    border: 1px solid;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 20;
+}
+
+.project-badge.border-green { 
+    border-color: #00FF00; 
+}
+.project-badge.border-orange { 
+    border-color: #ff7b00; 
+}
+
+.pulsing-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    animation: pulse-badge 2s infinite;
+}
+
+.pulsing-dot.bg-green { 
+    background: #00FF00; 
+}
+.pulsing-dot.bg-orange { 
+    background: #ff7b00; 
+    animation: pulse-badge-orange 2s infinite;
+}
+
+.project-badge span {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.project-badge span.text-green { 
+    color: #00FF00; 
+}
+.project-badge span.text-orange { 
+    color: #ff7b00; 
+}
+
+@keyframes pulse-badge {
+    0% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.4); }
+    70% { box-shadow: 0 0 0 6px rgba(0, 255, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 255, 0, 0); }
+}
+
+@keyframes pulse-badge-orange {
+    0% { box-shadow: 0 0 0 0 rgba(255, 123, 0, 0.4); }
+    70% { box-shadow: 0 0 0 6px rgba(255, 123, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 123, 0, 0); }
+}
+
+/* Localhost Project Custom Styles */
+.project-card.local {
+    background: #c63c01;
+    border: 3px solid #050a1c;
+}
+.project-card.local:hover {
+    border-style: solid;
+}
+
+.project-img-wrap {
+    order: 3;
+    position: relative;
+    width: 100%;
+    height: 250px; /* PERBAIKAN: Berikan tinggi pasti agar max-height berfungsi */
+    max-height: 0; /* Sembunyikan gambar secara default */
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.4s ease-out;
+}
+
+.project-card:hover .project-img-wrap,
+.project-card.row-hover .project-img-wrap {
+    max-height: 250px; /* Munculkan gambar ke bawah */
+    opacity: 1;
+}
+
+.project-img-wrap img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 250px; /* Tinggi fix agar gambar tidak gepeng saat animasi */
+    object-fit: cover;
+    opacity: 0.8;
+    transition: transform 0.5s ease;
+}
+
+.project-img-wrap .project-placeholder {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Tombol Carousel (Alpine JS) */
+.carousel-btn {
+    position: absolute;
+    top: 50%; /* Kembali ke tengah gambar */
+    transform: translateY(-50%);
+    background: rgba(5, 10, 28, 0.7);
+    color: white;
+    border: 2px solid var(--spidey-red);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 30;
+    border-radius: 50%;
+    font-family: var(--font-bungee);
+    font-size: 1rem;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+.project-img-wrap:hover .carousel-btn {
+    opacity: 1;
+}
+.carousel-btn:hover {
+    background: var(--spidey-red);
+    transform: translateY(-50%) scale(1.15);
+}
+.carousel-btn.left { left: 8px; }
+.carousel-btn.right { right: 8px; }
+
+.project-img-wrap img.grayscale {
+    filter: grayscale(100%);
+    opacity: 0.5;
+}
+
+.project-card:hover .project-img-wrap img {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.project-card:hover .project-img-wrap img.grayscale {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+.project-card::after {
+    display: none;
+}
+
+.project-card:hover::after {
+    display: none;
+}
+
+.project-img-overlay {
+    display: none;
+}
+
+.project-content {
+    order: 2;
+    position: relative;
+    width: 100%;
+    padding: 1rem 1.5rem 1.5rem 1.5rem;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.project-card:hover .project-content {
+    transform: none;
+}
+
+.project-title {
+    font-family: var(--font-bungee);
+    font-size: 1.5rem;
+    color: #fff;
+    text-transform: uppercase;
+    font-style: italic;
+    transform: skewX(-6deg);
+    margin: 0 0 0.5rem 0;
+    letter-spacing: 1px;
+}
+
+.project-desc {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: #CFE0F5;
+    line-height: 1.6;
+    margin: 0 0 1rem 0;
+    flex-grow: 1;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.4s ease-out;
+}
+
+.project-card:hover .project-tags,
+.project-card.row-hover .project-tags {
+    max-height: 100px;
+    opacity: 1;
+    margin-bottom: 1.5rem;
+}
+
+.project-tags .tag {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    border: 1px solid var(--spidey-red);
+    color: #fff;
+    background: rgba(227, 30, 36, 0.2);
+    border-radius: 4px;
+    font-family: var(--font-mono);
+}
+
+.project-actions {
+    display: flex;
+    gap: 0.75rem;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.4s ease-out;
+}
+
+.project-card:hover .project-actions,
+.project-card.row-hover .project-actions {
+    max-height: 50px;
+    opacity: 1;
+}
+
+.btn-primary {
+    flex: 1;
+    background: var(--spidey-red);
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+    text-transform: uppercase;
+    font-style: italic;
+    letter-spacing: 1px;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.3s ease;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary:hover {
+    background: #ff7b00;
+}
+
+/* ================= SECTION 4: MEME DECORATION ================= */
+.meme-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.meme-decoration:hover {
+    opacity: 1;
+}
+
+.meme-decoration img {
+    max-width: 100%;
+    max-height: 250px;
+    object-fit: contain;
+    filter: grayscale(80%) drop-shadow(4px 4px 0px #050a1c);
+    transition: filter 0.3s ease;
+    cursor: pointer;
+}
+
+.meme-decoration:hover img {
+    filter: grayscale(0%) drop-shadow(8px 8px 0px #c63c01);
+}
+
+@media (min-width: 1024px) {
+    .meme-decoration {
+        /* Grid 3 kolom, 7 proyek memakan 2 baris penuh + 1 kolom di baris ke-3.
+           Meme akan mengambil sisa 2 kolom di baris ke-3 tersebut. */
+        grid-column: span 2;
+    }
+}
+
+/* ================= SECTION 5: CONTACT ================= */
+.section-five {
+    padding: 6rem 0;
+    position: relative;
+    background: var(--navy-800);
+    z-index: 5;
+    border-top: 4px solid var(--spidey-red);
+}
+
+.s5-header-strip {
+    background: var(--spidey-red);
+    padding: 1rem 0;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    transform: rotate(-1deg);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.s5-title {
+    font-family: var(--font-bungee);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: #fff;
+    margin: 0;
+    letter-spacing: 2px;
+    text-shadow: 3px 3px 0 #050a1c;
+}
+
+.s5-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(1.5rem, 5vw, 4rem);
+}
+
+.s5-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+}
+
+@media (min-width: 900px) {
+    .s5-grid {
+        grid-template-columns: 1fr 1.5fr;
+        gap: 4rem;
+    }
+}
+
+.s5-info {
+    background: var(--navy-700);
+    padding: 2.5rem;
+    border: 3px solid #050a1c;
+    box-shadow: 6px 6px 0 #050a1c;
+}
+
+.s5-info h2 {
+    font-family: var(--font-bungee);
+    color: var(--spidey-red);
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 0 #050a1c;
+}
+
+.s5-info p {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--cream);
+    margin-bottom: 2rem;
+}
+
+.s5-contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.s5-contact-list li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+}
+
+.s5-contact-list i {
+    font-size: 1.5rem;
+    color: var(--spidey-red);
+}
+
+.s5-contact-list a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.s5-contact-list a:hover {
+    color: var(--spidey-blue);
+    text-decoration: underline;
+}
+
+.s5-form-wrapper {
+    background: var(--spidey-blue);
+    padding: 2.5rem;
+    border: 3px solid #050a1c;
+    box-shadow: 6px 6px 0 #050a1c;
+}
+
+.s5-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.s5-form label {
+    display: block;
+    font-family: var(--font-bungee);
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 0 #050a1c;
+}
+
+.s5-form input,
+.s5-form textarea {
+    width: 100%;
+    padding: 1rem;
+    background: var(--navy-900);
+    border: 2px solid #050a1c;
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.s5-form input:focus,
+.s5-form textarea:focus {
+    outline: none;
+    border-color: var(--spidey-red);
+    box-shadow: 0 0 0 3px rgba(230, 36, 41, 0.3);
+}
+
+.s5-form textarea {
+    resize: vertical;
+}
+
+.btn-submit {
+    display: inline-block;
+    width: 100%;
+    background: var(--spidey-red);
+    color: #fff;
+    font-family: var(--font-bungee);
+    font-size: 1.2rem;
+    padding: 1rem;
+    border: 3px solid #050a1c;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.2s ease;
+}
+
+.btn-submit:hover {
+    background: #ff3338;
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 #050a1c;
+}
+
+.btn-submit:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #050a1c;
+}
+
+.btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.s5-form-status {
+    margin-top: 0.75rem;
+    font-family: var(--font-body, inherit);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    min-height: 1.2em;
+}
+
+.s5-form-status--sending {
+    color: #0B1440;
+}
+
+.s5-form-status--success {
+    color: #1a9e5c;
+}
+
+.s5-form-status--error {
+    color: var(--spidey-red);
+}
+
+/* --- Google Maps --- */
+.s5-map-wrapper.mt-8 {
+    margin-top: 2rem;
+}
+
+.s5-map-title {
+    font-family: var(--font-bungee);
+    color: var(--spidey-red);
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    text-shadow: 1px 1px 0 #050a1c;
+}
+
+.s5-map-frame {
+    border: 3px solid #050a1c;
+    box-shadow: 4px 4px 0 #050a1c;
+    overflow: hidden;
+    /* Memberikan efek grayscale & biru gelap agar cocok dengan tema Spider-Man */
+    filter: grayscale(40%) sepia(20%) hue-rotate(180deg) contrast(110%);
+    transition: filter 0.3s ease;
+}
+
+.s5-map-frame:hover {
+    filter: grayscale(0%) sepia(0%) hue-rotate(0deg) contrast(100%);
+}
+
+.s5-map-frame iframe {
+    display: block;
+}
+
+/* ================= SPIDEY TRACKER HUD (PIXEL) ================= */
+.pixel-border-double {
+    border: 4px solid var(--cyan-frame, #3FC1D6);
+    box-shadow: 
+        0 0 0 4px var(--deep-teal, #134A5B),
+        0 0 0 8px var(--cyan-frame, #3FC1D6);
+    border-radius: 0px !important;
+}
+
+.tick-marks-top {
+    background-image: repeating-linear-gradient(90deg, transparent, transparent 18px, rgba(63, 193, 214, 0.5) 18px, rgba(63, 193, 214, 0.5) 20px);
+    background-size: 100% 10px;
+    background-repeat: no-repeat;
+    background-position: top;
+}
+
+.tick-marks-left {
+    background-image: repeating-linear-gradient(180deg, transparent, transparent 18px, rgba(63, 193, 214, 0.5) 18px, rgba(63, 193, 214, 0.5) 20px);
+    background-size: 10px 100%;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+@keyframes scrollMarquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+    display: inline-block;
+    white-space: nowrap;
+    animation: scrollMarquee 15s linear infinite;
+}
+
+.scanlines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0),
+        rgba(255,255,255,0) 50%,
+        rgba(0,0,0,0.2) 50%,
+        rgba(0,0,0,0.2)
+    );
+    background-size: 100% 4px;
+    z-index: 10;
+}
+
+.btn-pixel-glow {
+    box-shadow: 4px 4px 0px 0px rgba(11,44,61,1), 0 0 15px rgba(241, 86, 36, 0.4);
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.btn-pixel-glow:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px 0px rgba(11,44,61,1), 0 0 5px rgba(241, 86, 36, 0.4);
+}
+
+/* ================= COMIC NAVBAR STYLES ================= */
+.comic-bg {
+    background-color: #1E40C4;
+    background-image: radial-gradient(#0B1440 15%, transparent 16%);
+    background-size: 8px 8px;
+}
+
+.comic-border {
+    border: 4px solid #0B1440;
+}
+
+.comic-shadow {
+    box-shadow: 4px 4px 0px 0px #0A0E27;
+}
+
+.web-line {
+    position: absolute;
+    height: 1px;
+    background-color: white;
+    top: 50%;
+    left: 0;
+    width: 0;
+    transition: width 0.3s ease-out;
+    transform-origin: left;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.nav-link:hover .web-line {
+    width: 100%;
+}
+
+@keyframes pulse-dot {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(229, 35, 27, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(229, 35, 27, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(229, 35, 27, 0); }
+}
+
+.live-dot {
+    animation: pulse-dot 2s infinite;
+}
+
+/* ================= HAMBURGER MENU & MOBILE NAV ================= */
+.hamburger-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 6px;
+    z-index: 60;
+    transition: border-color 0.3s ease;
+}
+
+.hamburger-btn:hover {
+    border-color: var(--spidey-red);
+}
+
+.hamburger-line {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+/* Hamburger → X animation */
+.hamburger-btn.is-active .hamburger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger-btn.is-active .hamburger-line:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.hamburger-btn.is-active .hamburger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile Menu Panel */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    background: rgba(10, 14, 40, 0.97);
+    z-index: 55;
+    display: none; /* Pakai display: none agar tidak makan tempat saat hidden */
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-menu.is-open {
+    display: flex;
+    animation: menuFadeIn 0.3s ease forwards;
+}
+
+@keyframes menuFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mobile-menu__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.mobile-menu__close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    z-index: 75;
+}
+
+.mobile-menu__close:hover {
+    transform: scale(1.1);
+}
+
+.mobile-menu__link {
+    font-family: var(--font-bungee);
+    font-size: 1.8rem;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    position: relative;
+    transition: color 0.3s ease, transform 0.3s ease;
+    text-shadow: 2px 2px 0px var(--spidey-red);
+}
+
+.mobile-menu__link:hover,
+.mobile-menu__link:focus {
+    color: var(--spidey-red);
+    transform: scale(1.1) skewX(-5deg);
+    text-shadow: 3px 3px 0px #050a1c;
+}
+
+.mobile-menu__socials {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu__socials a {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu__socials a:hover {
+    border-color: var(--spidey-red);
+    background: var(--spidey-red);
+    transform: translateY(-3px);
+}
+
+/* Hide hamburger on desktop */
+@media (min-width: 768px) {
+    .hamburger-btn {
+        display: none !important;
+    }
+    .mobile-menu {
+        display: none !important;
+    }
+}
+
+/* Instagram inline SVG icon sizing (replaces material-symbols camera placeholder) */
+.ig-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+.ig-icon svg {
+    width: 1em;
+    height: 1em;
+}

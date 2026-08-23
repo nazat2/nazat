@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>M Najat - Fullstack Developer</title>
+    <meta name="description" content="Portfolio M Najat. Fullstack Web Developer & Database Designer.">
+    <link rel="icon" type="image/png" href="https://img.icons8.com/color/48/console.png">
+
+    <!-- Fonts: Clash Display (heroic display) + Satoshi (body) + JetBrains Mono (labels/code) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=satoshi@400,500,700&display=swap"
+        rel="stylesheet">
+    <!-- Bangers (outline hover text) + Bungee (name) -->
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {
+            --color-tracker-navy: #0B2C3D;
+            --color-cyan-frame: #3FC1D6;
+            --color-deep-teal: #134A5B;
+            --color-pixel-white: #EAF6FA;
+            --color-web-green: #3FA34D;
+            --color-spidey-red: #E31E24;
+            --font-pixel: "Press Start 2P", cursive;
+            --color-secondary-container: #c63c01;
+            --color-surface-container: #2d1b19;
+            --color-muted-blue: #8A93B2;
+        }
+    </style>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/TagCloud@2.2.0/dist/TagCloud.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Dummy anchor for scrolling to the very top -->
+    <div id="home"></div>
+    
+    <!-- ================= /SECTION 1 ================= -->
+    <section class="hero">
+
+        <!-- TopNavBar (Comic Style) -->
+        <nav class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="navbar">
+            <div class="h-[60px] md:h-[70px] flex justify-between items-center px-6 md:px-12 w-full max-w-full comic-bg border-b-[4px] border-[#0B1440] shadow-[0_4px_15px_rgba(10,14,39,0.4)] transition-colors duration-300" id="navbar-inner">
+                
+                <!-- Logo removed per request -->
+
+                <!-- Navigation Links (Desktop) -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a class="nav-link relative group text-white hover:text-white font-['Space_Grotesk'] font-medium tracking-[0.2em] uppercase transition-colors" href="#home">
+                        HOME
+                        <div class="web-line"></div>
+                    </a>
+                    <a class="nav-link relative group text-white/80 hover:text-white font-['Space_Grotesk'] font-medium tracking-[0.2em] uppercase transition-colors" href="#section-two">
+                        TENTANG
+                        <div class="web-line"></div>
+                    </a>
+                    <a class="nav-link relative group text-white/80 hover:text-white font-['Space_Grotesk'] font-medium tracking-[0.2em] uppercase transition-colors" href="#skills">
+                        KEAHLIAN
+                        <div class="web-line"></div>
+                    </a>
+                    <a class="nav-link relative group text-white/80 hover:text-white font-['Space_Grotesk'] font-medium tracking-[0.2em] uppercase transition-colors" href="#portfolio">
+                        PORTOFOLIO
+                        <div class="web-line"></div>
+                    </a>
+                </div>
+                
+                <!-- CTA & Socials -->
+                <div class="flex items-center space-x-4 md:space-x-6">
+                    <!-- Social Icons (Desktop only to save space) -->
+                    <div class="hidden lg:flex items-center space-x-4 text-white/80">
+                        <a class="hover:text-white hover:scale-110 transition-all" href="https://www.instagram.com/nazat_____?igsi=MWhvZWxjNzlkZ25ueg==" target="_blank" rel="noopener" aria-label="Instagram"><span class="ig-icon text-xl"><svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:inline-block;vertical-align:-0.125em;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.012-3.584.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.98-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></span></a>
+                        <a class="hover:text-white hover:scale-110 transition-all" href="mailto:mnajat0508@gmail.com" aria-label="Email"><span class="material-symbols-outlined text-xl">mail</span></a>
+                    </div>
+                    
+                    <!-- CTA Button -->
+                    <a class="bg-[#E5231B] text-white px-4 py-1 md:px-5 md:py-1.5 font-['Anton'] text-base md:text-lg uppercase italic tracking-widest border-2 border-[#0B1440] comic-shadow hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#0A0E27] active:translate-y-[4px] active:shadow-none transition-all flex items-center gap-2 hidden md:flex" href="#contact">
+                        KONTAK
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </a>
+
+                    <!-- Hamburger Button (Mobile Only) -->
+                    <button class="hamburger-btn md:hidden" id="hamburger-btn" aria-label="Toggle Menu" aria-expanded="false">
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                        <span class="hamburger-line"></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu Overlay (Pindah ke luar nav agar tidak merusak lebar layar / bikin bisa di-scroll ke samping) -->
+        <div class="mobile-menu" id="mobile-menu" aria-hidden="true" style="z-index: 70;">
+            <!-- Tombol Close (X) Khusus di Dalam Menu -->
+            <button class="mobile-menu__close" id="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Close Menu">
+                <span class="material-symbols-outlined" style="font-size: 2rem; color: #fff;">close</span>
+            </button>
+
+            <div class="mobile-menu__inner">
+                <a class="mobile-menu__link" href="#home" onclick="closeMobileMenu()">HOME</a>
+                <a class="mobile-menu__link" href="#section-two" onclick="closeMobileMenu()">TENTANG</a>
+                <a class="mobile-menu__link" href="#skills" onclick="closeMobileMenu()">KEAHLIAN</a>
+                <a class="mobile-menu__link" href="#portfolio" onclick="closeMobileMenu()">PORTOFOLIO</a>
+                <a class="mobile-menu__link" href="#contact" onclick="closeMobileMenu()">KONTAK</a>
+                <div class="mobile-menu__socials">
+                    <a href="https://www.instagram.com/nazat_____?igsi=MWhvZWxjNzlkZ25ueg==" target="_blank" rel="noopener" aria-label="Instagram"><span class="ig-icon"><svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:inline-block;vertical-align:-0.125em;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.012-3.584.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.98-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></span></a>
+                    <a href="mailto:mnajat0508@gmail.com" aria-label="Email"><span class="material-symbols-outlined">mail</span></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero__grid">
+
+            <!-- Kolom kiri: perkenalan -->
+            <div class="hero__intro">
+                <p class="hero__eyebrow">// hello, saya</p>
+                <h1 class="hero__name">M<br>Najat</h1>
+                <a href="#section-two" class="hero__cta">Tentang Saya →</a>
+            </div>
+
+            <!-- Kolom tengah: foto dengan efek mask reveal + teks outline -->
+            <div>
+                <div class="hero__stage">
+                    <!-- Logo ala Marvel Spider-Man -->
+                    <div class="spidey-logo" aria-hidden="true">
+                        <div class="spidey-logo__top">MY</div>
+                        <div class="spidey-logo__bottom">
+                            <span class="l-1">P</span>
+                            <span class="l-2">O</span>
+                            <span class="l-3">R</span>
+                            <span class="l-4">T</span>
+                            <span class="l-5">O</span>
+                            <span class="l-dash">-</span>
+                            <span class="l-6">F</span>
+                            <span class="l-7">O</span>
+                            <span class="l-8">L</span>
+                            <span class="l-9">I</span>
+                            <span class="l-10">O</span>
+                        </div>
+                    </div>
+
+                    <div class="stage__photo" tabindex="0">
+                        <img class="real-img" src="assets/section1/wajah-asli.png"
+                            alt="Foto asli M Najat">
+                        <img class="mask-img" src="assets/section1/topeng-spiderman.png"
+                            alt="Foto M Najat memakai topeng Spider-Man">
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Kolom kanan: about me -->
+            <div class="hero__about">
+                <p class="hero__about-label">About Me</p>
+                <p class="hero__about-text">
+                    Siswa SMK yang fokus membangun aplikasi web dari sisi frontend sampai
+                    struktur database-nya. Senang bereksperimen dengan detail interaksi
+                    kecil yang bikin sebuah web terasa hidup dan berkarakter.
+                </p>
+
+                <p class="hero__find">Find me on</p>
+                <div class="hero__find-links">
+                    <a href="https://www.instagram.com/nazat_____?igsi=MWhvZWxjNzlkZ25ueg==" target="_blank" rel="noopener"
+                        aria-label="Instagram">
+                        <span class="ig-icon"><svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:inline-block;vertical-align:-0.125em;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.012-3.584.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.98-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></span>
+                    </a>
+                    <a href="mailto:mnajat0508@gmail.com" aria-label="Email">
+                        <i class="devicon-google-plain"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Banner Bawah (Marquee Berjalan) -->
+        <div class="hero__banner">
+            <div class="hero__banner-bg"></div>
+            <!-- Wrapper animasi berjalan -->
+            <div class="hero__banner-marquee">
+                <!-- Set 1 -->
+                <div class="hero__banner-content">
+                    <span class="banner-text">WEB DEVELOPER</span>
+                    <img class="banner-icon" src="assets/section1/asset-spiderman.png" alt="">
+                    <span class="banner-text">FULL STACK DEV LARAVEL</span>
+                    <img class="banner-icon" src="assets/section1/asset-spiderman.png" alt="">
+                </div>
+                <!-- Set 2 (Duplikat untuk Looping) -->
+                <div class="hero__banner-content" aria-hidden="true">
+                    <span class="banner-text">WEB DEVELOPER</span>
+                    <img class="banner-icon" src="assets/section1/asset-spiderman.png" alt="">
+                    <span class="banner-text">FULL STACK DEV LARAVEL</span>
+                    <img class="banner-icon" src="assets/section1/asset-spiderman.png" alt="">
+                </div>
+                <!-- Set 3 (Untuk layar super lebar / Ultrawide) -->
+                <div class="hero__banner-content" aria-hidden="true">
+                    <span class="banner-text">WEB DEVELOPER</span>
+                    <img class="banner-icon" src="assets/section1/asset-spiderman.png" alt="">
+                    <span class="banner-text">FULL STACK DEV LARAVEL</span>
+                    <img class="banner-icon" src="assets/section1/asset-spiderman.png" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Elemen Spider-Man Menggantung Terbalik (Fixed) -->
+    <div class="spidey-puller" id="spidey-puller" aria-hidden="true">
+        <img src="assets/section1/spiderman-hanging-upside-down.png" alt="Spider-Man Hanging">
+    </div>
+
+    <!-- ================= SECTION 2 ================= -->
+    <section class="section-two" id="section-two">
+        <!-- Tali Jaring CSS gaya komik dari user -->
+        <div class="jaring-css" id="jaring-css"></div>
+        <!-- Ornamen Laba-laba & Jaring (Dari test.html) -->
+
+        <svg class="s2-web bl" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#ffffff" stroke-width="1" fill="none" opacity="0.9">
+                <line x1="0" y1="0" x2="260" y2="90" />
+                <line x1="0" y1="0" x2="180" y2="0" />
+                <line x1="0" y1="0" x2="80" y2="0" />
+                <line x1="0" y1="0" x2="0" y2="160" />
+                <path d="M0,30 Q60,35 90,80" />
+                <path d="M0,80 Q100,85 140,150" />
+            </g>
+        </svg>
+        <svg class="s2-web br" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#ffffff" stroke-width="1" fill="none" opacity="0.9">
+                <line x1="0" y1="0" x2="260" y2="90" />
+                <line x1="0" y1="0" x2="180" y2="0" />
+                <line x1="0" y1="0" x2="80" y2="0" />
+                <line x1="0" y1="0" x2="0" y2="160" />
+                <path d="M0,30 Q60,35 90,80" />
+                <path d="M0,80 Q100,85 140,150" />
+            </g>
+        </svg>
+
+        <svg class="s2-watermark" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#ffffff"
+                d="M100 10 C60 10 30 40 30 80 C30 110 50 130 60 150 C50 145 35 150 30 165 C45 160 55 168 60 180 C58 165 65 155 75 150 C70 165 78 180 90 190 C85 175 90 160 100 155 C110 160 115 175 110 190 C122 180 130 165 125 150 C135 155 142 165 140 180 C145 168 155 160 170 165 C165 150 150 145 140 150 C150 130 170 110 170 80 C170 40 140 10 100 10 Z M100 30 C125 30 145 50 145 80 C145 100 130 115 100 130 C70 115 55 100 55 80 C55 50 75 30 100 30 Z" />
+        </svg>
+
+        <div class="s2-content">
+
+            <div class="s2-grid">
+                <div class="s2-photo-wrap">
+                    <div class="s2-photo-card">
+                        <div class="s2-photo-inner">
+                            <img src="assets/section2/profil.jpeg" alt="M Najat">
+                        </div>
+                        <div class="s2-corner-badge">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2l2 5 5 1-4 3 1 5-4-3-4 3 1-5-4-3 5-1z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="s2-bio">
+                    <h1 class="s2-title">M NAJAT</h1>
+                    <p class="lead">Kekuatan sejati bukan datang dari gigitan laba-laba, tapi dari
+                        <strong>konsistensi</strong> dan <strong>kemauan belajar</strong> untuk terus berkembang.</p>
+                    <p class="desc">
+                        Halo, saya M Najat, siswa SMK jurusan Teknik Jaringan Komputer dan Telekomunikasi (TJKT)
+                        yang sangat meminati dunia jaringan dan infrastruktur IT. Saya terbiasa menangani
+                        konfigurasi Mikrotik, Cisco, hingga administrasi server berbasis Linux. Di luar itu saya
+                        juga senang mengembangkan project web sebagai hobi. Saya selalu berusaha merangkai
+                        segala sesuatu bagaikan jaring laba-laba: terstruktur, kuat, dan mampu menyelesaikan
+                        masalah dengan efisien.
+                    </p>
+
+                    <div class="s2-stat-row">
+                        <div class="s2-stat-card">
+                            <div class="label">Asal</div>
+                            <div class="value">Ciranjang, Cianjur, Jawa Barat</div>
+                        </div>
+                        <div class="s2-stat-card">
+                            <div class="label">Pendidikan</div>
+                            <div class="value">Siswa SMK - TJKT</div>
+                        </div>
+                        <div class="s2-stat-card">
+                            <div class="label">Fokus Utama</div>
+                            <div class="value">Jaringan & Infrastruktur IT</div>
+                        </div>
+                    </div>
+                    <div class="s2-action">
+                        <a href="#contact" class="s2-btn-comic">
+                            HUBUNGI SAYA &rarr;
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SECTION 3 ================= -->
+    <section class="section-three" id="skills">
+        <div class="s3-bg-pattern"></div>
+        
+        <!-- Hiasan: Jaring di Sudut -->
+        <img class="s3-decor s3-web-corner" src="assets/section2/bg-spider-web-corner.png" alt="" aria-hidden="true">
+        
+        <!-- Hiasan: Spider-Man Menggantung Berayun -->
+        <img class="s3-decor s3-spidey-hang" src="assets/section1/spiderman-hanging-upside-down.png" alt="" aria-hidden="true">
+
+        <!-- Header Strip -->
+        <div class="s3-header-strip torn-edge">
+            <!-- Ikon Spidey di kiri dan kanan teks -->
+            <img class="s3-decor s3-head-icon left" src="assets/section1/asset-spiderman.png" alt="">
+            <h1 class="s3-title">SKILL SAYA</h1>
+            <img class="s3-decor s3-head-icon right" src="assets/section1/asset-spiderman.png" alt="">
+        </div>
+
+        <div class="s3-container">
+            <div class="s3-grid" id="skills-container">
+                
+                <!-- Skill Card 1 -->
+                <div class="skill-card" style="animation-delay: 0.1s;">
+                    <div class="skill-card-top">
+                        <div class="skill-icon-wrap">
+                            <span class="material-symbols-outlined">lan</span>
+                        </div>
+                        <h3 class="skill-name">Jaringan Komputer (LAN/WAN)</h3>
+                    </div>
+                    <div class="skill-progress-wrap">
+                        <div class="skill-progress-bar" data-width="85%">
+                            <div class="skill-progress-glow"></div>
+                        </div>
+                    </div>
+                    <div class="skill-percent">85%</div>
+                </div>
+
+                <!-- Skill Card 2 -->
+                <div class="skill-card" style="animation-delay: 0.2s;">
+                    <div class="skill-card-top">
+                        <div class="skill-icon-wrap">
+                            <span class="material-symbols-outlined">router</span>
+                        </div>
+                        <h3 class="skill-name">Mikrotik RouterOS</h3>
+                    </div>
+                    <div class="skill-progress-wrap">
+                        <div class="skill-progress-bar" data-width="80%">
+                            <div class="skill-progress-glow"></div>
+                        </div>
+                    </div>
+                    <div class="skill-percent">80%</div>
+                </div>
+
+                <!-- Skill Card 3 -->
+                <div class="skill-card" style="animation-delay: 0.3s;">
+                    <div class="skill-card-top">
+                        <div class="skill-icon-wrap">
+                            <span class="material-symbols-outlined">hub</span>
+                        </div>
+                        <h3 class="skill-name">Cisco (Routing &amp; Switching)</h3>
+                    </div>
+                    <div class="skill-progress-wrap">
+                        <div class="skill-progress-bar" data-width="75%">
+                            <div class="skill-progress-glow"></div>
+                        </div>
+                    </div>
+                    <div class="skill-percent">75%</div>
+                </div>
+
+                <!-- Skill Card 4 -->
+                <div class="skill-card" style="animation-delay: 0.4s;">
+                    <div class="skill-card-top">
+                        <div class="skill-icon-wrap">
+                            <i class="devicon-linux-plain"></i>
+                        </div>
+                        <h3 class="skill-name">Administrasi Server (Linux)</h3>
+                    </div>
+                    <div class="skill-progress-wrap">
+                        <div class="skill-progress-bar" data-width="75%">
+                            <div class="skill-progress-glow"></div>
+                        </div>
+                    </div>
+                    <div class="skill-percent">75%</div>
+                </div>
+
+                <!-- Skill Card 5 -->
+                <div class="skill-card" style="animation-delay: 0.5s;">
+                    <div class="skill-card-top">
+                        <div class="skill-icon-wrap">
+                            <span class="material-symbols-outlined">cable</span>
+                        </div>
+                        <h3 class="skill-name">Instalasi Kabel &amp; Fiber Optik</h3>
+                    </div>
+                    <div class="skill-progress-wrap">
+                        <div class="skill-progress-bar" data-width="90%">
+                            <div class="skill-progress-glow"></div>
+                        </div>
+                    </div>
+                    <div class="skill-percent">90%</div>
+                </div>
+
+                <!-- Skill Card 6 -->
+                <div class="skill-card" style="animation-delay: 0.6s;">
+                    <div class="skill-card-top">
+                        <div class="skill-icon-wrap">
+                            <span class="material-symbols-outlined">network_check</span>
+                        </div>
+                        <h3 class="skill-name">Troubleshooting Jaringan</h3>
+                    </div>
+                    <div class="skill-progress-wrap">
+                        <div class="skill-progress-bar" data-width="85%">
+                            <div class="skill-progress-glow"></div>
+                        </div>
+                    </div>
+                    <div class="skill-percent">85%</div>
+                </div>
+
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- ================= SECTION 4 ================= -->
+    <section class="section-four" id="portfolio">
+        
+        <!-- Marquee Divider -->
+        <div class="marquee-divider">
+            <!-- Marquee 1 (Kiri) -->
+            <div class="marquee-strip marquee-top">
+                <div class="marquee-content animate-marquee-left">
+                    <span class="mx-4 marquee-text" data-text="MY PROJECTS">MY PROJECTS</span>
+                    <img src="assets/icons/spidey-mask.svg" alt="Spider-Man Mask" class="marquee-icon">
+                    <span class="mx-4 marquee-text" data-text="MY PROJECTS">MY PROJECTS</span>
+                    <img src="assets/icons/asterisk.svg" alt="Asterisk" class="marquee-icon" style="width:40px; height:40px;">
+                    <span class="mx-4 marquee-text" data-text="MY PROJECTS">MY PROJECTS</span>
+                    <img src="assets/icons/spidey-mask.svg" alt="Spider-Man Mask" class="marquee-icon">
+                    <!-- Duplicate 1 -->
+                    <span class="mx-4 marquee-text" data-text="MY PROJECTS">MY PROJECTS</span>
+                    <img src="assets/icons/spidey-mask.svg" alt="Spider-Man Mask" class="marquee-icon">
+                    <span class="mx-4 marquee-text" data-text="MY PROJECTS">MY PROJECTS</span>
+                    <img src="assets/icons/asterisk.svg" alt="Asterisk" class="marquee-icon" style="width:40px; height:40px;">
+                    <span class="mx-4 marquee-text" data-text="MY PROJECTS">MY PROJECTS</span>
+                    <img src="assets/icons/spidey-mask.svg" alt="Spider-Man Mask" class="marquee-icon">
+                    <!-- Duplicate 2 -->
+                    <span class="mx-4 marquee-text" data-text="MY PROJECTS">MY PROJECTS</span>
+                    <img src="assets/icons/spidey-mask.svg" alt="Spider-Man Mask" class="marquee-icon">
+                    <span class="mx-4 marquee-text" data-text="MY PROJECTS">MY PROJECTS</span>
+                    <img src="assets/icons/asterisk.svg" alt="Asterisk" class="marquee-icon" style="width:40px; height:40px;">
+                    <span class="mx-4 marquee-text" data-text="MY PROJECTS">MY PROJECTS</span>
+                    <img src="assets/icons/spidey-mask.svg" alt="Spider-Man Mask" class="marquee-icon">
+                    <!-- Duplicate 3 -->
+                    <span class="mx-4 marquee-text" data-text="MY PROJECTS">MY PROJECTS</span>
+                    <img src="assets/icons/spidey-mask.svg" alt="Spider-Man Mask" class="marquee-icon">
+                    <span class="mx-4 marquee-text" data-text="MY PROJECTS">MY PROJECTS</span>
+                    <img src="assets/icons/asterisk.svg" alt="Asterisk" class="marquee-icon" style="width:40px; height:40px;">
+                    <span class="mx-4 marquee-text" data-text="MY PROJECTS">MY PROJECTS</span>
+                    <img src="assets/icons/spidey-mask.svg" alt="Spider-Man Mask" class="marquee-icon">
+                </div>
+            </div>
+
+            <!-- Marquee 2 (Kanan) -->
+            <div class="marquee-strip marquee-bottom">
+                <div class="marquee-content animate-marquee-right">
+                    <span class="mx-4 marquee-text" data-text="UX/UI DESIGN">UX/UI DESIGN</span>
+                    <img src="assets/icons/spidey-mask.svg" alt="Spider-Man Mask" class="marquee-icon mix-blend">
+                    <span class="mx-4 marquee-text" data-text="GSAP ANIMATIONS">GSAP ANIMATIONS</span>
+                    <img src="assets/icons/asterisk.svg" alt="Asterisk" class="marquee-icon mix-blend" style="width:40px; height:40px;">
+                    <span class="mx-4 marquee-text" data-text="CREATIVE CODING">CREATIVE CODING</span>
+                    <img src="assets/icons/spidey-mask.svg" alt="Spider-Man Mask" class="marquee-icon mix-blend">
+                    <!-- Duplicate 1 -->
+                    <span class="mx-4 marquee-text" data-text="UX/UI DESIGN">UX/UI DESIGN</span>
+                    <img src="assets/icons/spidey-mask.svg" alt="Spider-Man Mask" class="marquee-icon mix-blend">
+                    <span class="mx-4 marquee-text" data-text="GSAP ANIMATIONS">GSAP ANIMATIONS</span>
+                    <img src="assets/icons/asterisk.svg" alt="Asterisk" class="marquee-icon mix-blend" style="width:40px; height:40px;">
+                    <span class="mx-4 marquee-text" data-text="CREATIVE CODING">CREATIVE CODING</span>
+                    <img src="assets/icons/spidey-mask.svg" alt="Spider-Man Mask" class="marquee-icon mix-blend">
+                    <!-- Duplicate 2 -->
+                    <span class="mx-4 marquee-text" data-text="UX/UI DESIGN">UX/UI DESIGN</span>
+                    <img src="assets/icons/spidey-mask.svg" alt="Spider-Man Mask" class="marquee-icon mix-blend">
+                    <span class="mx-4 marquee-text" data-text="GSAP ANIMATIONS">GSAP ANIMATIONS</span>
+                    <img src="assets/icons/asterisk.svg" alt="Asterisk" class="marquee-icon mix-blend" style="width:40px; height:40px;">
+                    <span class="mx-4 marquee-text" data-text="CREATIVE CODING">CREATIVE CODING</span>
+                    <img src="assets/icons/spidey-mask.svg" alt="Spider-Man Mask" class="marquee-icon mix-blend">
+                    <!-- Duplicate 3 -->
+                    <span class="mx-4 marquee-text" data-text="UX/UI DESIGN">UX/UI DESIGN</span>
+                    <img src="assets/icons/spidey-mask.svg" alt="Spider-Man Mask" class="marquee-icon mix-blend">
+                    <span class="mx-4 marquee-text" data-text="GSAP ANIMATIONS">GSAP ANIMATIONS</span>
+                    <img src="assets/icons/asterisk.svg" alt="Asterisk" class="marquee-icon mix-blend" style="width:40px; height:40px;">
+                    <span class="mx-4 marquee-text" data-text="CREATIVE CODING">CREATIVE CODING</span>
+                    <img src="assets/icons/spidey-mask.svg" alt="Spider-Man Mask" class="marquee-icon mix-blend">
+                </div>
+            </div>
+        </div>
+        
+        
+
+        <!-- Filter Tabs -->
+        <div class="s4-filters">
+            <button class="s4-filter-btn clip-cut-btn active" data-filter="all">
+                Semua Proyek
+                <span class="s4-filter-indicator"></span>
+            </button>
+        </div>
+
+        <div class="s4-container">
+            <!-- Project Grid -->
+            <div class="s4-grid">
+
+                <!-- Project 1: 2D Castlevania -->
+                <article class="project-card clip-cut" data-category="live">
+                    <div class="project-badge border-green">
+                        <div class="pulsing-dot bg-green"></div>
+                        <span class="text-green">Live</span>
+                    </div>
+                    <div class="project-img-wrap">
+                        <img src="assets/projects/project-castlevania.jpg" alt="Tangkapan layar 2D Castlevania" loading="lazy">
+                        <div class="project-img-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">2D Castlevania</h3>
+                        <p class="project-desc">Game platformer 2D bergaya Castlevania, dibangun sebagai eksplorasi mekanik gameplay dan animasi sprite.</p>
+                        <div class="project-tags">
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Game Dev</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="https://2d-castlevania.vercel.app/" target="_blank" rel="noopener" class="btn-primary clip-cut-btn">
+                                Visit Site &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 2: Hanekawa AI -->
+                <article class="project-card clip-cut" data-category="live">
+                    <div class="project-badge border-green">
+                        <div class="pulsing-dot bg-green"></div>
+                        <span class="text-green">Live</span>
+                    </div>
+                    <div class="project-img-wrap">
+                        <img src="assets/projects/project-hanekawa.jpg" alt="Tangkapan layar Hanekawa AI" loading="lazy">
+                        <div class="project-img-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Hanekawa AI</h3>
+                        <p class="project-desc">Aplikasi web berbasis AI dengan antarmuka chat interaktif untuk membantu menjawab pertanyaan pengguna.</p>
+                        <div class="project-tags">
+                            <span class="tag">Next.js</span>
+                            <span class="tag">AI Integration</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="https://hanekawa-ai.vercel.app/" target="_blank" rel="noopener" class="btn-primary clip-cut-btn">
+                                Visit Site &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 3: Lord of the Mysteries -->
+                <article class="project-card clip-cut" data-category="live">
+                    <div class="project-badge border-green">
+                        <div class="pulsing-dot bg-green"></div>
+                        <span class="text-green">Live</span>
+                    </div>
+                    <div class="project-img-wrap">
+                        <img src="assets/projects/project-lotm.jpg" alt="Tangkapan layar Lord of the Mysteries" loading="lazy">
+                        <div class="project-img-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Lord of the Mysteries</h3>
+                        <p class="project-desc">Website bertema fiksi/novel dengan tampilan atmosferik dan navigasi konten yang rapi.</p>
+                        <div class="project-tags">
+                            <span class="tag">Web App</span>
+                            <span class="tag">UI/UX</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="https://lord-of-the-mysteriess.vercel.app/" target="_blank" rel="noopener" class="btn-primary clip-cut-btn">
+                                Visit Site &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 4: Nazlingo -->
+                <article class="project-card clip-cut" data-category="live">
+                    <div class="project-badge border-green">
+                        <div class="pulsing-dot bg-green"></div>
+                        <span class="text-green">Live</span>
+                    </div>
+                    <div class="project-img-wrap">
+                        <img src="assets/projects/project-nazlingo.jpg" alt="Tangkapan layar Nazlingo" loading="lazy">
+                        <div class="project-img-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Nazlingo</h3>
+                        <p class="project-desc">Aplikasi web pembelajaran bahasa interaktif, terinspirasi dari platform belajar bahasa populer.</p>
+                        <div class="project-tags">
+                            <span class="tag">Web App</span>
+                            <span class="tag">Education</span>
+                        </div>
+                        <div class="project-actions">
+                            <a href="https://nazlingo.vercel.app/" target="_blank" rel="noopener" class="btn-primary clip-cut-btn">
+                                Visit Site &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Meme Decoration (Filling Empty Space) -->
+                <div class="meme-decoration">
+                    <img src="assets/meme-its-you.gif" alt="Spidey Meme Pointing">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SECTION 5 ================= -->
+    <section class="section-five" id="contact">
+        <div class="s5-header-strip torn-edge">
+            <!-- Ikon Spidey di kiri dan kanan teks -->
+            <img class="s3-decor s3-head-icon left" src="assets/section1/asset-spiderman.png" alt="">
+            <h1 class="s5-title">HUBUNGI SAYA</h1>
+            <img class="s3-decor s3-head-icon right" src="assets/section1/asset-spiderman.png" alt="">
+        </div>
+        
+        <div class="s5-container">
+            <div class="s5-grid">
+                <!-- Contact Info -->
+                <div class="s5-info clip-cut">
+                    <h2>MARI BEKERJASAMA!</h2>
+                    <p>Punya proyek impian, atau sekadar ingin berdiskusi soal teknologi? Jangan ragu untuk menghubungi saya. Jaring komunikasi saya selalu terbuka untuk Anda!</p>
+                    
+                    <ul class="s5-contact-list">
+                        <li>
+                            <i class="devicon-google-plain"></i>
+                            <a href="mailto:mnajat0508@gmail.com">mnajat0508@gmail.com</a>
+                        </li>
+                        <li>
+                            <span class="ig-icon"><svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:inline-block;vertical-align:-0.125em;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.012-3.584.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.98-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></span>
+                            <a href="https://www.instagram.com/nazat_____?igsi=MWhvZWxjNzlkZ25ueg==" target="_blank" rel="noopener">Instagram</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="s5-form-wrapper clip-cut">
+                    <form action="#" class="s5-form">
+                        <div class="form-group">
+                            <label for="name">NAMA</label>
+                            <input type="text" id="name" name="name" placeholder="Peter Parker" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">EMAIL</label>
+                            <input type="email" id="email" name="email" placeholder="spidey@dailybugle.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">PESAN</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Kirimkan sinyal laba-laba Anda di sini..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit clip-cut-btn">KIRIM PESAN &rarr;</button>
+                        <p class="s5-form-status" aria-live="polite"></p>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Bagian Google Maps (HUD Retro Style) -->
+            <div class="s5-map-wrapper mt-8 w-full max-w-full overflow-hidden">
+                <section class="relative w-full max-w-5xl mx-auto bg-deep-teal p-3 md:p-6 pb-0 mt-8 mb-16">
+                    <!-- Floating Badge -->
+                    <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-tracker-navy to-cyan-frame text-pixel-white font-pixel text-[10px] py-2 px-4 border-2 border-cyan-frame flex items-center gap-2 z-20 shadow-[0_4px_0_var(--color-tracker-navy)]">
+                        <span>SPIDEY</span>
+                        <span class="material-symbols-outlined text-spidey-red" style="font-variation-settings: 'FILL' 1;">download_for_offline</span>
+                        <span>TRACKER</span>
+                    </div>
+                    
+                    <div class="relative w-full border-4 border-cyan-frame bg-tracker-navy h-[400px] overflow-hidden flex shadow-[0_0_0_4px_var(--color-deep-teal),0_0_0_8px_var(--color-cyan-frame)] rounded-none">
+                        <!-- Left Sidebar Legends (Hidden on Mobile) -->
+                        <div class="hidden md:flex w-[60px] bg-tracker-navy border-r-2 border-cyan-frame/30 flex-col items-center py-6 gap-6 z-20">
+                            <div class="w-8 h-8 border-2 border-web-green bg-tracker-navy flex items-center justify-center cursor-pointer hover:bg-web-green/20">
+                                <span class="material-symbols-outlined text-web-green text-sm" style="font-variation-settings: 'FILL' 1;">bug_report</span>
+                            </div>
+                            <div class="w-8 h-8 border-2 border-spidey-red bg-tracker-navy flex items-center justify-center cursor-pointer hover:bg-spidey-red/20">
+                                <span class="material-symbols-outlined text-spidey-red text-sm" style="font-variation-settings: 'FILL' 1;">bug_report</span>
+                            </div>
+                            <div class="w-8 h-8 border-2 border-pixel-white/50 bg-tracker-navy flex items-center justify-center mt-auto cursor-pointer">
+                                <span class="material-symbols-outlined text-pixel-white/50 text-sm">layers</span>
+                            </div>
+                        </div>
+                        <!-- Map Container -->
+                        <div class="relative flex-1 h-full bg-tracker-navy">
+                            <!-- Tick Marks Overlays -->
+                            <div class="absolute top-0 left-0 right-0 h-4 tick-marks-top z-10 pointer-events-none"></div>
+                            <div class="absolute top-0 left-0 bottom-0 w-4 tick-marks-left z-10 pointer-events-none"></div>
+                            
+                            <!-- Google Map Iframe -->
+                            <div class="w-full h-full bg-tracker-navy s5-map-frame" id="spidey-map" style="position: relative; overflow: hidden; border: none; box-shadow: none;">
+                                <iframe 
+                                    src="https://maps.google.com/maps?q=Ciranjang%2C%20Cianjur%2C%20Jawa%20Barat&t=&z=13&ie=UTF8&iwloc=&output=embed" 
+                                    width="100%" 
+                                    height="100%" 
+                                    style="border:0;" 
+                                    allowfullscreen="" 
+                                    loading="lazy" 
+                                    referrerpolicy="no-referrer-when-downgrade">
+                                </iframe>
+                            </div>
+                            <!-- Scanlines overlay -->
+                            <div class="scanlines"></div>
+                            
+                            <!-- Radar Compass (Bottom Right) -->
+                            <div class="hidden md:block absolute bottom-6 right-6 w-24 h-24 z-20 pointer-events-none opacity-80">
+                                <!-- Simulated Radar SVG -->
+                                <svg class="w-full h-full animate-spin" style="animation-duration: 8s;" viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" fill="none" r="45" stroke="#3FC1D6" stroke-dasharray="4 4" stroke-width="2"></circle>
+                                    <circle cx="50" cy="50" fill="none" r="30" stroke="#3FC1D6" stroke-width="1"></circle>
+                                    <circle cx="50" cy="50" fill="none" r="15" stroke="#3FC1D6" stroke-width="1"></circle>
+                                    <line stroke="#3FC1D6" stroke-width="1" x1="50" x2="50" y1="5" y2="95"></line>
+                                    <line stroke="#3FC1D6" stroke-width="1" x1="5" x2="95" y1="50" y2="50"></line>
+                                    <circle class="animate-ping" cx="70" cy="30" fill="#E31E24" r="3"></circle>
+                                    <circle cx="70" cy="30" fill="#E31E24" r="3"></circle>
+                                </svg>
+                            </div>
+                            
+                            <!-- Pixel Sprite & CTA (Bottom Left) -->
+                            <div class="absolute bottom-6 left-4 md:left-24 z-20 flex flex-col items-center gap-2">
+                                <a class="bg-secondary-container text-pixel-white font-pixel text-[10px] py-2 px-4 border-2 border-pixel-white uppercase tracking-wider btn-pixel-glow text-center cursor-pointer" href="https://maps.google.com/?q=Ciranjang,+Cianjur,+Jawa+Barat" target="_blank" style="text-decoration: none;">
+                                    GET DIRECTIONS
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Marquee Strip -->
+                    <div class="w-full bg-[#051821] border-4 border-t-0 border-cyan-frame h-10 flex items-center overflow-hidden relative shadow-[0_4px_0_var(--color-deep-teal),0_8px_0_var(--color-cyan-frame)] rounded-none mb-4">
+                        <div class="flex-1 overflow-hidden relative">
+                            <p class="font-pixel text-cyan-frame text-[10px] animate-marquee leading-10 m-0">
+                                SHARE YOUR SPIDEY SIGHTING &bull; GET DIRECTIONS TO MY OFFICE &bull; INCOMING TRANSMISSION &bull; SENSORS ACTIVE &bull; 
+                            </p>
+                        </div>
+                        <!-- Speaker Toggle -->
+                        <button class="bg-tracker-navy border-l-2 border-cyan-frame h-full px-4 flex items-center justify-center hover:bg-cyan-frame/20 transition-colors z-10 relative outline-none cursor-pointer">
+                            <span class="material-symbols-outlined text-cyan-frame text-sm">volume_up</span>
+                        </button>
+                    </div>
+                    <!-- Spacer to account for shadow offset -->
+                    <div class="h-4"></div>
+                </section>
+            </div>
+        </div>
+    </section>
+    <!-- ================= FOOTER ================= -->
+    <footer class="relative bg-[#0B1440] border-t-[6px] border-[#E5231B] py-8 overflow-hidden z-20">
+        <div class="absolute inset-0 opacity-10" style="background-image: url('assets/section1/jaring.png'); background-repeat: repeat; background-size: 150px;"></div>
+        
+        <div class="max-w-6xl mx-auto px-6 relative z-10 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex flex-col items-center md:items-start">
+                <a href="#home" class="font-['Anton'] text-3xl text-white tracking-wider hover:text-[#E5231B] transition-colors" style="text-shadow: 2px 2px 0px #000;">
+                    NAJAT://
+                </a>
+                <p class="font-['Space_Grotesk'] text-[#8A93B2] text-sm mt-2 text-center md:text-left">
+                    "With great power comes great responsibility."
+                </p>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <a href="https://www.instagram.com/nazat_____?igsi=MWhvZWxjNzlkZ25ueg==" target="_blank" class="w-10 h-10 bg-white rounded-full flex items-center justify-center comic-border hover:scale-110 hover:bg-[#E5231B] transition-all group duration-300">
+                    <span class="ig-icon text-xl text-[#0B1440] group-hover:text-white transition-colors"><svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" style="display:inline-block;vertical-align:-0.125em;"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.012-3.584.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.98-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></span>
+                </a>
+                <a href="mailto:mnajat0508@gmail.com" class="w-10 h-10 bg-white rounded-full flex items-center justify-center comic-border hover:scale-110 hover:bg-[#E5231B] transition-all group duration-300">
+                    <i class="devicon-google-plain text-xl text-[#0B1440] group-hover:text-white transition-colors"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="w-full border-t-2 border-[#1E40C4] mt-6 pt-4 text-center relative z-10 px-6">
+            <p class="font-['Space_Grotesk'] text-xs text-white/50">
+                &copy; <script>document.write(new Date().getFullYear())</script> M Najat. All Rights Reserved. Build with 🕷️
+            </p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#home" id="btn-back-to-top" class="fixed bottom-8 right-8 bg-[#E5231B] text-white p-3 md:p-4 rounded-full comic-border comic-shadow hover:scale-110 active:translate-y-1 transition-all duration-300 opacity-0 pointer-events-none flex items-center justify-center" style="z-index: 9999;">
+        <span class="material-symbols-outlined font-bold text-2xl" style="font-variation-settings: 'wght' 700;">arrow_upward</span>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
