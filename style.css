@@ -35,6 +35,36 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Safety net: no image should ever be able to overflow its container,
+   whether or not it has an explicit width/height set elsewhere. */
+img, svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Feels smoother / more "app-like" on touch devices: removes the gray
+   flash Android shows on tap and lets our own hover/active styles show instead. */
+a, button, .clip-cut-btn, .hero__cta, .s2-btn-comic, .hamburger-btn {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Anchor targets: offset the scroll landing spot so the fixed navbar
+   never covers the top of the section when jumping via nav links. */
+#section-two,
+#skills,
+#portfolio,
+#contact {
+    scroll-margin-top: 70px;
+}
+@media (max-width: 767px) {
+    #section-two,
+    #skills,
+    #portfolio,
+    #contact {
+        scroll-margin-top: 60px;
+    }
+}
+
 /* ============================================================
    Custom Comic Scrollbar
    ============================================================ */
@@ -579,15 +609,37 @@ body {
     transform: translateY(-2px);
 }
 
-/* respect reduced motion */
+/* respect reduced motion: turn off decorative motion sitewide for anyone
+   who has asked their OS/browser to minimize animation. */
 @media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
 
     .stage__word span,
     .stage__photo .mask-img,
     .hero__cta,
     .navbar__socials a,
-    .hero__find-links a {
+    .hero__find-links a,
+    .project-card,
+    .skill-card,
+    .hero__name,
+    .mobile-menu,
+    .mobile-menu__link {
         transition: none !important;
+    }
+
+    .hero__intro > *,
+    .hero__about > *,
+    .hero__stage,
+    .skill-card {
+        opacity: 1 !important;
+        transform: none !important;
     }
 }
 
@@ -2676,6 +2728,40 @@ h1.s2-title {
     opacity: 1;
 }
 
+/* Perangkat sentuh (HP/tablet) tidak punya ":hover" yang reliable, jadi
+   gambar, tag, dan tombol "Visit Site" harus selalu tampil, bukan
+   nunggu hover yang mungkin tidak pernah terpicu. */
+@media (hover: none) {
+    .project-img-wrap {
+        max-height: 250px;
+        opacity: 1;
+    }
+    .project-img-wrap img {
+        opacity: 1;
+        transform: none;
+    }
+    .project-img-wrap img.grayscale {
+        filter: grayscale(0%);
+        opacity: 1;
+    }
+    .project-tags {
+        max-height: 100px;
+        opacity: 1;
+        margin-bottom: 1.5rem;
+    }
+    .project-actions {
+        max-height: 50px;
+        opacity: 1;
+    }
+    .project-card::before,
+    .project-card::after {
+        opacity: 0.15;
+    }
+    .carousel-btn {
+        opacity: 1;
+    }
+}
+
 .btn-primary {
     flex: 1;
     background: var(--spidey-red);
@@ -3114,7 +3200,11 @@ h1.s2-title {
     transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Mobile Menu Panel */
+/* Mobile Menu Panel
+   Menggunakan opacity/visibility (bukan display:none) supaya animasi
+   jalan smooth baik saat DIBUKA maupun DITUTUP, bukan cuma pas dibuka.
+   pointer-events:none saat tertutup mencegah overlay full-layar yang
+   tak terlihat ini diam-diam memblokir klik ke konten di baliknya. */
 .mobile-menu {
     position: fixed;
     top: 0;
@@ -3124,25 +3214,22 @@ h1.s2-title {
     height: 100dvh;
     background: rgba(10, 14, 40, 0.97);
     z-index: 55;
-    display: none; /* Pakai display: none agar tidak makan tempat saat hidden */
+    display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-16px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
 }
 
 .mobile-menu.is-open {
-    display: flex;
-    animation: menuFadeIn 0.3s ease forwards;
-}
-
-@keyframes menuFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0s;
 }
 
 .mobile-menu__inner {

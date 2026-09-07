@@ -44,6 +44,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+    <!-- Fallback: kartu skill di-reveal oleh JS (IntersectionObserver). Kalau JS gagal
+         dimuat, pastikan kartunya tetap terlihat, jangan sampai transparan selamanya. -->
+    <noscript>
+        <style>.skill-card{opacity:1!important;transform:none!important;animation:none!important;}</style>
+    </noscript>
 </head>
 
 <body>
@@ -259,7 +264,7 @@
                 <div class="s2-photo-wrap">
                     <div class="s2-photo-card">
                         <div class="s2-photo-inner">
-                            <img src="assets/section2/profil.jpeg" alt="M Najat">
+                            <img src="assets/section2/profil.jpeg" alt="M Najat" loading="lazy">
                         </div>
                         <div class="s2-corner-badge">
                             <svg viewBox="0 0 24 24">
@@ -311,17 +316,17 @@
         <div class="s3-bg-pattern"></div>
         
         <!-- Hiasan: Jaring di Sudut -->
-        <img class="s3-decor s3-web-corner" src="assets/section2/bg-spider-web-corner.png" alt="" aria-hidden="true">
+        <img class="s3-decor s3-web-corner" src="assets/section2/bg-spider-web-corner.png" alt="" aria-hidden="true" loading="lazy">
         
         <!-- Hiasan: Spider-Man Menggantung Berayun -->
-        <img class="s3-decor s3-spidey-hang" src="assets/section1/spiderman-hanging-upside-down.png" alt="" aria-hidden="true">
+        <img class="s3-decor s3-spidey-hang" src="assets/section1/spiderman-hanging-upside-down.png" alt="" aria-hidden="true" loading="lazy">
 
         <!-- Header Strip -->
         <div class="s3-header-strip torn-edge">
             <!-- Ikon Spidey di kiri dan kanan teks -->
-            <img class="s3-decor s3-head-icon left" src="assets/section1/asset-spiderman.png" alt="">
+            <img class="s3-decor s3-head-icon left" src="assets/section1/asset-spiderman.png" alt="" loading="lazy">
             <h1 class="s3-title">SKILL SAYA</h1>
-            <img class="s3-decor s3-head-icon right" src="assets/section1/asset-spiderman.png" alt="">
+            <img class="s3-decor s3-head-icon right" src="assets/section1/asset-spiderman.png" alt="" loading="lazy">
         </div>
 
         <div class="s3-container">
@@ -616,7 +621,7 @@
 
                 <!-- Meme Decoration (Filling Empty Space) -->
                 <div class="meme-decoration">
-                    <img src="assets/meme-its-you.gif" alt="Spidey Meme Pointing">
+                    <img src="assets/meme-its-you.gif" alt="Spidey Meme Pointing" loading="lazy">
                 </div>
 
             </div>
@@ -627,9 +632,9 @@
     <section class="section-five" id="contact">
         <div class="s5-header-strip torn-edge">
             <!-- Ikon Spidey di kiri dan kanan teks -->
-            <img class="s3-decor s3-head-icon left" src="assets/section1/asset-spiderman.png" alt="">
+            <img class="s3-decor s3-head-icon left" src="assets/section1/asset-spiderman.png" alt="" loading="lazy">
             <h1 class="s5-title">HUBUNGI SAYA</h1>
-            <img class="s3-decor s3-head-icon right" src="assets/section1/asset-spiderman.png" alt="">
+            <img class="s3-decor s3-head-icon right" src="assets/section1/asset-spiderman.png" alt="" loading="lazy">
         </div>
         
         <div class="s5-container">
